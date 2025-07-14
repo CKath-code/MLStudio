@@ -1,0 +1,75 @@
+name: run-pipeline
+
+on:
+  workflow_call:
+    inputs:
+      resource_group:
+        required: true
+        type: string
+      workspace_name:
+        required: true
+        type: string
+      parameters-file:
+        required: true
+        type: string
+      job-name:
+        required: true
+        type: string
+    secrets:
+      AZURE_CLIENT_ID:
+        required: true
+      AZURE_TENANT_ID:
+        required: true
+      AZURE_SUBSCRIPTION_ID:
+        required: true
+      AZURE_CLIENT_SECRET:
+        required: true
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          creds: ${{ format('{{"clientId":"{0}","clientSecret":"{1}","subscriptionId":"{2}","tenantId":"{3}"}}', secrets.AZURE_CLIENT_ID, secrets.AZURE_CLIENT_SECRET, secrets.AZURE_SUBSCRIPTION_ID, secrets.AZURE_TENANT_ID) }}
+      - name: install-extension
+        run: az extension add -n ml -y
+      - name: update-extension
+        run: az extension update -n ml
+      - name: run-pipeline
+        run: |
+          run_id=$(az ml job create --file ${{ inputs.parameters-file }} --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }} --query name -o tsv)
+          if [[ -z "$run_id" ]]
+          then
+            echo "Job creation failed"
+            exit 3
+          fi
+          az ml job show --name $run_id --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }}
+          echo "Checking job status..."
+          status=$(az ml job show --name $run_id --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }} --query status -o tsv)
+          if [[ -z "$status" ]]
+          then
+            echo "Status query failed"
+            exit 4
+          fi
+          running=("NotStarted" "Queued" "Starting" "Preparing" "Running" "Finalizing")
+          while [[ " ${running[*]} " =~ " ${status} " ]]; do
+            sleep 15 
+            status=$(az ml job show --name $run_id --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }} --query status -o tsv)
+            echo "Current job status is $status"
+          done
+          if [[ "$status" == "Completed" ]]
+          then
+            echo "Job completed successfully"
+          elif [[ "$status" == "Failed" ]]
+          then
+            echo "Job failed"
+            az ml job show --name $run_id --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }}
+            exit 1
+          else
+            echo "Job not in terminal status, current status is $status"
+            exit 2
+          fi
