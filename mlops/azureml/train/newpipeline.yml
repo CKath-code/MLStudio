@@ -7,7 +7,7 @@ description: End-to-end-MLOps-pipeline-for-used-car-price-prediction  # Provide 
 inputs:
   raw_data:
     type: uri_file
-    path: azureml:used-cars-data@latest
+    path: azureml:used-cars-data-20250714-192100@latest
 
 outputs:
   train_data:
@@ -57,7 +57,7 @@ jobs:
         values: [10, 20, 30, 50]
       max_depth:
         type: choice  # Specify the type for max_depth
-        values: [5, 10, 15, 20, null]  # Provide the values for max_depth
+        values: [5, 10, 15, 20]  # Provide the values for max_depth (removed null)
     objective:
       goal: minimize
       primary_metric: MSE
