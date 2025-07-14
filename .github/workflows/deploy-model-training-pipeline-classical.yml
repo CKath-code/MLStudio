@@ -8,10 +8,6 @@ on:
     branches:
       - main
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   get-config:
       uses: Azure/mlops-templates/.github/workflows/read-yaml.yml@main
@@ -30,9 +26,7 @@ jobs:
         resource_group: ${{ needs.get-config.outputs.resource_group }}
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }} 
       secrets:
-        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }} 
         
   register-dataset:
     needs: get-config
@@ -43,9 +37,7 @@ jobs:
       name: used-cars-data
       data_file: mlops/azureml/train/data.yml
     secrets:
-      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
   
   register-environment:
       needs: get-config
@@ -56,9 +48,7 @@ jobs:
         environment_file:  mlops/azureml/train/train-env.yml
         conda_file: data-science/environment/train-conda.yml
       secrets:
-        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
   run-pipeline:
       needs: [get-config,register-environment,create-compute,register-dataset]
@@ -69,6 +59,4 @@ jobs:
         parameters-file:  mlops/azureml/train/newpipeline.yml
         job-name: mlops-pipeline
       secrets:
-        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
