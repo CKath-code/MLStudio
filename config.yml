@@ -1,0 +1,5 @@
+# Azure ML Configuration
+subscription_id: f7694127-2f65-4c53-aaef-a2750f7337d3
+resource_group: defalt_resource_group
+workspace_name: FitwellWorkspace
+location: eastus
