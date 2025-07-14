@@ -2,49 +2,48 @@
   "cells": [
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## **Problem Statement**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **Business Context**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "An automobile dealership in Los Vegas specializes in selling luxury and non-luxury vehicles. They cater to diverse customer preferences with varying vehicle specifications, such as mileage, engine capacity, and seating capacity. However, the dealership faces significant challenges in maintaining consistency and efficiency across its pricing strategy due to reliance on manual processes and disconnected systems. Pricing evaluations are prone to errors, updates are delayed, and scaling operations are difficult as demand grows. These inefficiencies impact revenue and customer trust. Recognizing the need for a reliable and scalable solution, the dealership is seeking to implement a unified system that ensures seamless integration of data-driven pricing decisions, adaptability to changing market conditions, and operational efficiency."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **Objective**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "The dealership has hired you as an MLOps Engineer to design and implement an MLOps pipeline that automates the pricing workflow. This pipeline will encompass data cleaning, preprocessing, transformation, model building, training, evaluation, and registration with CI/CD capabilities to ensure continuous integration and delivery. Your role is to overcome challenges such as integrating disparate data sources, maintaining consistent model performance, and enabling scalable, automated updates to meet evolving business needs. The expected outcomes are a robust, automated system that improves pricing accuracy, operational efficiency, and scalability, driving increased profitability and customer satisfaction."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **Data Description**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "The dataset contains attributes of used cars sold in various locations. These attributes serve as key data points for CarOnSell's pricing model. The detailed attributes are:\n",
         "\n",
@@ -61,11 +60,11 @@
         "- **Seats:** The number of seats in the vehicle, can influence the vehicle's classification, usage, and pricing based on customer needs.\n",
         "\n",
         "- **Price:** The price of the vehicle, listed in lakhs (units of 100,000), represents the cost to the consumer for purchasing the vehicle."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## **Please read the instructions carefully before starting the project.**\n",
         "\n",
@@ -75,123 +74,40 @@
         "* Identify the task to be performed correctly, and only then proceed to write the required code.\n",
         "* Fill the code wherever required. Running incomplete code may throw error.\n",
         "* Please run the codes in a sequential manner from the beginning to avoid any unnecessary errors."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## **1. AzureML Environment Setup and Data Preparation**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **1.1 Connect to Azure Machine Learning Workspace**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "Requirement already satisfied: azure-ai-ml in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (1.28.1)\n",
-            "Requirement already satisfied: pyjwt<3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (2.4.0)\n",
-            "Requirement already satisfied: isodate<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.2)\n",
-            "Requirement already satisfied: azure-common>=1.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.1.28)\n",
-            "Requirement already satisfied: six>=1.11.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.17.0)\n",
-            "Requirement already satisfied: msrest<1.0.0,>=0.6.18 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.1)\n",
-            "Requirement already satisfied: azure-monitor-opentelemetry in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.6.10)\n",
-            "Requirement already satisfied: azure-storage-file-datalake>=12.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.20.0)\n",
-            "Requirement already satisfied: tqdm<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.67.1)\n",
-            "Requirement already satisfied: strictyaml<2.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.7.3)\n",
-            "Requirement already satisfied: colorama<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.4.6)\n",
-            "Requirement already satisfied: azure-core>=1.23.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.33.0)\n",
-            "Requirement already satisfied: typing-extensions<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.14.0)\n",
-            "Requirement already satisfied: pyyaml<7.0.0,>=5.1.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (6.0.2)\n",
-            "Requirement already satisfied: jsonschema<5.0.0,>=4.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.24.0)\n",
-            "Requirement already satisfied: azure-storage-file-share in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.21.0)\n",
-            "Requirement already satisfied: marshmallow<4.0.0,>=3.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (3.26.1)\n",
-            "Requirement already satisfied: azure-storage-blob>=12.10.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.25.1)\n",
-            "Requirement already satisfied: azure-mgmt-core>=1.3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.5.0)\n",
-            "Requirement already satisfied: pydash<9.0.0,>=6.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (8.0.5)\n",
-            "Requirement already satisfied: requests>=2.21.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core>=1.23.0->azure-ai-ml) (2.32.3)\n",
-            "Requirement already satisfied: cryptography>=2.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-storage-blob>=12.10.0->azure-ai-ml) (38.0.4)\n",
-            "Requirement already satisfied: rpds-py>=0.7.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.24.0)\n",
-            "Requirement already satisfied: referencing>=0.28.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.36.2)\n",
-            "Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (2025.4.1)\n",
-            "Requirement already satisfied: attrs>=22.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (25.3.0)\n",
-            "Requirement already satisfied: packaging>=17.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from marshmallow<4.0.0,>=3.5->azure-ai-ml) (25.0)\n",
-            "Requirement already satisfied: requests-oauthlib>=0.5.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2.0.0)\n",
-            "Requirement already satisfied: certifi>=2017.4.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2025.4.26)\n",
-            "Requirement already satisfied: python-dateutil>=2.6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from strictyaml<2.0.0->azure-ai-ml) (2.9.0.post0)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-django<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-urllib<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-resource-detector-azure~=0.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.1.5)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: azure-core-tracing-opentelemetry~=1.0.0b11 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b12)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-flask<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-sdk<1.32,>=1.28.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-requests<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-urllib3<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: azure-monitor-opentelemetry-exporter~=1.0.0b31 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b39)\n",
-            "Requirement already satisfied: opentelemetry-api>=1.12.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\n",
-            "Requirement already satisfied: psutil<8,>=5.9 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (7.0.0)\n",
-            "Requirement already satisfied: azure-identity~=1.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.21.0)\n",
-            "Requirement already satisfied: fixedint==0.1.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (0.1.6)\n",
-            "Requirement already satisfied: cffi>=1.12 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (1.17.1)\n",
-            "Requirement already satisfied: opentelemetry-util-http==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-wsgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: opentelemetry-semantic-conventions==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: wrapt<2.0.0,>=1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.14.1)\n",
-            "Requirement already satisfied: deprecated>=1.2.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-semantic-conventions==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.2.18)\n",
-            "Requirement already satisfied: importlib-metadata<8.7.0,>=6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (8.2.0)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-asgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: asgiref~=3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-asgi==0.52b1->opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (3.9.1)\n",
-            "Requirement already satisfied: opentelemetry-instrumentation-dbapi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\n",
-            "Requirement already satisfied: idna<4,>=2.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.10)\n",
-            "Requirement already satisfied: urllib3<3,>=1.21.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (1.26.20)\n",
-            "Requirement already satisfied: charset-normalizer<4,>=2 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.4.1)\n",
-            "Requirement already satisfied: oauthlib>=3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests-oauthlib>=0.5.0->msrest<1.0.0,>=0.6.18->azure-ai-ml) (3.2.2)\n",
-            "Requirement already satisfied: msal-extensions>=1.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.2.0)\n",
-            "Requirement already satisfied: msal>=1.30.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.32.3)\n",
-            "Requirement already satisfied: pycparser in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cffi>=1.12->cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (2.22)\n",
-            "Requirement already satisfied: zipp>=0.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from importlib-metadata<8.7.0,>=6.0->opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (3.19.2)\n",
-            "Requirement already satisfied: portalocker<3,>=1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msal-extensions>=1.2.0->azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (2.10.1)\n"
-          ]
-        }
-      ],
       "source": [
         "!pip install --upgrade azure-ai-ml"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Requirement already satisfied: azure-ai-ml in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (1.28.1)\nRequirement already satisfied: azure-monitor-opentelemetry in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.6.10)\nRequirement already satisfied: azure-common>=1.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.1.28)\nRequirement already satisfied: colorama<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.4.6)\nRequirement already satisfied: jsonschema<5.0.0,>=4.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.24.0)\nRequirement already satisfied: pydash<9.0.0,>=6.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (8.0.5)\nRequirement already satisfied: pyyaml<7.0.0,>=5.1.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (6.0.2)\nRequirement already satisfied: tqdm<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.67.1)\nRequirement already satisfied: azure-mgmt-core>=1.3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.5.0)\nRequirement already satisfied: six>=1.11.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.17.0)\nRequirement already satisfied: azure-storage-file-share in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.21.0)\nRequirement already satisfied: azure-storage-file-datalake>=12.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.20.0)\nRequirement already satisfied: msrest<1.0.0,>=0.6.18 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.1)\nRequirement already satisfied: azure-core>=1.23.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.33.0)\nRequirement already satisfied: strictyaml<2.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.7.3)\nRequirement already satisfied: marshmallow<4.0.0,>=3.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (3.26.1)\nRequirement already satisfied: azure-storage-blob>=12.10.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.25.1)\nRequirement already satisfied: isodate<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.2)\nRequirement already satisfied: pyjwt<3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (2.4.0)\nRequirement already satisfied: typing-extensions<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.14.0)\nRequirement already satisfied: requests>=2.21.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core>=1.23.0->azure-ai-ml) (2.32.3)\nRequirement already satisfied: cryptography>=2.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-storage-blob>=12.10.0->azure-ai-ml) (38.0.4)\nRequirement already satisfied: jsonschema-specifications>=2023.03.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (2025.4.1)\nRequirement already satisfied: attrs>=22.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (25.3.0)\nRequirement already satisfied: referencing>=0.28.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.36.2)\nRequirement already satisfied: rpds-py>=0.7.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.24.0)\nRequirement already satisfied: packaging>=17.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from marshmallow<4.0.0,>=3.5->azure-ai-ml) (25.0)\nRequirement already satisfied: requests-oauthlib>=0.5.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2.0.0)\nRequirement already satisfied: certifi>=2017.4.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2025.4.26)\nRequirement already satisfied: python-dateutil>=2.6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from strictyaml<2.0.0->azure-ai-ml) (2.9.0.post0)\nRequirement already satisfied: opentelemetry-instrumentation-flask<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-resource-detector-azure~=0.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.1.5)\nRequirement already satisfied: opentelemetry-instrumentation-django<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-urllib3<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: azure-monitor-opentelemetry-exporter~=1.0.0b31 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b39)\nRequirement already satisfied: opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-requests<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: azure-core-tracing-opentelemetry~=1.0.0b11 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b12)\nRequirement already satisfied: opentelemetry-instrumentation-urllib<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-sdk<1.32,>=1.28.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\nRequirement already satisfied: opentelemetry-api>=1.12.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\nRequirement already satisfied: azure-identity~=1.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.21.0)\nRequirement already satisfied: fixedint==0.1.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (0.1.6)\nRequirement already satisfied: psutil<8,>=5.9 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (7.0.0)\nRequirement already satisfied: cffi>=1.12 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (1.17.1)\nRequirement already satisfied: opentelemetry-semantic-conventions==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-wsgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-util-http==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: wrapt<2.0.0,>=1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.14.1)\nRequirement already satisfied: deprecated>=1.2.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-semantic-conventions==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.2.18)\nRequirement already satisfied: importlib-metadata<8.7.0,>=6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (8.2.0)\nRequirement already satisfied: opentelemetry-instrumentation-asgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: asgiref~=3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-asgi==0.52b1->opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (3.9.1)\nRequirement already satisfied: opentelemetry-instrumentation-dbapi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: charset-normalizer<4,>=2 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.4.1)\nRequirement already satisfied: urllib3<3,>=1.21.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (1.26.20)\nRequirement already satisfied: idna<4,>=2.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.10)\nRequirement already satisfied: oauthlib>=3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests-oauthlib>=0.5.0->msrest<1.0.0,>=0.6.18->azure-ai-ml) (3.2.2)\nRequirement already satisfied: msal-extensions>=1.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.2.0)\nRequirement already satisfied: msal>=1.30.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.32.3)\nRequirement already satisfied: pycparser in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cffi>=1.12->cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (2.22)\nRequirement already satisfied: zipp>=0.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from importlib-metadata<8.7.0,>=6.0->opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (3.19.2)\nRequirement already satisfied: portalocker<3,>=1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msal-extensions>=1.2.0->azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (2.10.1)\n"
+        }
+      ],
+      "execution_count": 1,
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516704945
-        }
-      },
-      "outputs": [
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "Current working directory: /mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code/Users/Connor_1742661257653/Project3\n",
-            "Files in current directory: ['.amlignore', '.amlignore.amltmp', '.ipynb_aml_checkpoints', 'used_cars.csv', 'Week-17_Project_LowCode_Notebook (1).ipynb', 'week-17_project_lowcode_notebook (1).ipynb.amltmp']\n",
-            "File exists check: True\n",
-            "Data asset doesn't exist yet: name 'ml_client' is not defined\n"
-          ]
-        }
-      ],
       "source": [
         "import os\n",
         "print(\"Current working directory:\", os.getcwd())\n",
@@ -204,24 +120,30 @@
         "    print(\"Data asset already exists:\", existing_data.path)\n",
         "except Exception as e:\n",
         "    print(\"Data asset doesn't exist yet:\", str(e))"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [],
-      "source": []
-    },
-    {
-      "cell_type": "code",
-      "execution_count": null,
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Current working directory: /mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code/Users/Connor_1742661257653/Project3\nFiles in current directory: ['.amlignore', '.amlignore.amltmp', '.ipynb_aml_checkpoints', 'used_cars.csv', 'Week-17_Project_LowCode_Notebook (1).ipynb', 'week-17_project_lowcode_notebook (1).ipynb.amltmp']\nFile exists check: True\nData asset doesn't exist yet: name 'ml_client' is not defined\n"
+        }
+      ],
+      "execution_count": 2,
       "metadata": {
         "gather": {
-          "logged": 1752516712840
+          "logged": 1752516704945
         }
-      },
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
       "outputs": [],
+      "execution_count": null,
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
       "source": [
         "# Handle to the workspace\n",
         "from azure.ai.ml import MLClient\n",
@@ -229,17 +151,17 @@
         "# Authentication package\n",
         "from azure.identity import DefaultAzureCredential\n",
         "credential = DefaultAzureCredential()"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 3,
+      "metadata": {
+        "gather": {
+          "logged": 1752516712840
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516715968
-        }
-      },
-      "outputs": [],
       "source": [
         "# Get a handle to the workspace\n",
         "ml_client = MLClient(\n",
@@ -248,33 +170,24 @@
         "    resource_group_name=\"defalt_resource_group\",\n",
         "    workspace_name=\"FitwellWorkspace\",\n",
         ")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 4,
+      "metadata": {
+        "gather": {
+          "logged": 1752516715968
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **1.2 Set Up Compute Cluster**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516716244
-        }
-      },
-      "outputs": [
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "You already have a cluster named cpu-cluster, we'll reuse it as is.\n",
-            "AMLCompute with name cpu-cluster is created, the compute size is Standard_DS11_v2\n"
-          ]
-        }
-      ],
       "source": [
         "from azure.ai.ml.entities import AmlCompute\n",
         "\n",
@@ -314,24 +227,30 @@
         "print(\n",
         "    f\"AMLCompute with name {cpu_cluster.name} is created, the compute size is {cpu_cluster.size}\"\n",
         ")"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "You already have a cluster named cpu-cluster, we'll reuse it as is.\nAMLCompute with name cpu-cluster is created, the compute size is Standard_DS11_v2\n"
+        }
+      ],
+      "execution_count": 5,
+      "metadata": {
+        "gather": {
+          "logged": 1752516716244
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **1.3 Register Dataset as Data Asset**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516716507
-        }
-      },
-      "outputs": [],
       "source": [
         "from azure.ai.ml.entities import Data\n",
         "from azure.ai.ml.constants import AssetTypes\n",
@@ -358,21 +277,25 @@
         "    description=\"A dataset of used cars for price prediction\",\n",
         "    name=\"used-cars-data\"\n",
         ")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 6,
+      "metadata": {
+        "gather": {
+          "logged": 1752516716507
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516720823
-        }
-      },
+      "source": [
+        "ml_client.data.create_or_update(data_asset)"
+      ],
       "outputs": [
         {
+          "output_type": "error",
           "ename": "HttpResponseError",
           "evalue": "(UserError) Can't create an active version in an archived container. Please restore the container or mark the version as archived.\nCode: UserError\nMessage: Can't create an active version in an archived container. Please restore the container or mark the version as archived.\nAdditional Information:Type: ComponentName\nInfo: {\n    \"value\": \"managementfrontend\"\n}Type: Correlation\nInfo: {\n    \"value\": {\n        \"operation\": \"fe35ce19637b331d2dbc05a4b9fc7e4a\",\n        \"request\": \"9caed9c02a2414c5\"\n    }\n}Type: Environment\nInfo: {\n    \"value\": \"eastus\"\n}Type: Location\nInfo: {\n    \"value\": \"eastus\"\n}Type: Time\nInfo: {\n    \"value\": \"2025-07-14T18:12:00.9052847+00:00\"\n}",
-          "output_type": "error",
           "traceback": [
             "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
             "\u001b[0;31mHttpResponseError\u001b[0m                         Traceback (most recent call last)",
@@ -388,47 +311,39 @@
           ]
         }
       ],
-      "source": [
-        "ml_client.data.create_or_update(data_asset)"
-      ]
+      "execution_count": 7,
+      "metadata": {
+        "gather": {
+          "logged": 1752516720823
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **1.4 Create and Configure Job Environment**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516787114
-        }
-      },
-      "outputs": [],
       "source": [
         "# Create a directory for the preprocessing script\n",
         "import os\n",
         "\n",
         "src_dir_env = \"./env\"\n",
         "os.makedirs(src_dir_env, exist_ok=True)"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 8,
+      "metadata": {
+        "gather": {
+          "logged": 1752516787114
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "Writing ./env/conda.yml\n"
-          ]
-        }
-      ],
       "source": [
         "%%writefile {src_dir_env}/conda.yml\n",
         "name: sklearn-env\n",
@@ -445,28 +360,19 @@
         "    - azureml-inference-server-http\n",
         "    - azureml-core==1.49.0\n",
         "    - cloudpickle==1.6.0"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Writing ./env/conda.yml\n"
+        }
+      ],
+      "execution_count": 9,
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516788678
-        }
-      },
-      "outputs": [
-        {
-          "data": {
-            "text/plain": [
-              "Environment({'arm_type': 'environment_version', 'latest_version': None, 'image': 'mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04', 'intellectual_property': None, 'is_anonymous': False, 'auto_increment_version': False, 'auto_delete_setting': None, 'name': 'machine_learning_E2E', 'description': 'Environment created from a Docker image plus Conda environment.', 'tags': {}, 'properties': {'azureml.labels': 'latest'}, 'print_as_yaml': False, 'id': '/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourceGroups/defalt_resource_group/providers/Microsoft.MachineLearningServices/workspaces/FitwellWorkspace/environments/machine_learning_E2E/versions/1', 'Resource__source_path': '', 'base_path': '/mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code/Users/Connor_1742661257653/Project3', 'creation_context': <azure.ai.ml.entities._system_data.SystemData object at 0x76e2ef107d60>, 'serialize': <msrest.serialization.Serializer object at 0x76e2ed4cfac0>, 'version': '1', 'conda_file': {'channels': ['conda-forge'], 'dependencies': ['python=3.8', 'pip=21.2.4', 'scikit-learn=0.23.2', 'scipy=1.7.1', {'pip': ['mlflow==2.8.1', 'azureml-mlflow==1.51.0', 'azureml-inference-server-http', 'azureml-core==1.49.0', 'cloudpickle==1.6.0']}], 'name': 'sklearn-env'}, 'build': None, 'inference_config': None, 'os_type': 'Linux', 'conda_file_path': None, 'path': None, 'datastore': None, 'upload_hash': None, 'translated_conda_file': '{\\n  \"channels\": [\\n    \"conda-forge\"\\n  ],\\n  \"dependencies\": [\\n    \"python=3.8\",\\n    \"pip=21.2.4\",\\n    \"scikit-learn=0.23.2\",\\n    \"scipy=1.7.1\",\\n    {\\n      \"pip\": [\\n        \"mlflow==2.8.1\",\\n        \"azureml-mlflow==1.51.0\",\\n        \"azureml-inference-server-http\",\\n        \"azureml-core==1.49.0\",\\n        \"cloudpickle==1.6.0\"\\n      ]\\n    }\\n  ],\\n  \"name\": \"sklearn-env\"\\n}'})"
-            ]
-          },
-          "execution_count": 10,
-          "metadata": {},
-          "output_type": "execute_result"
-        }
-      ],
       "source": [
         "from azure.ai.ml.entities import Environment, BuildContext\n",
         "\n",
@@ -477,65 +383,70 @@
         "    description=\"Environment created from a Docker image plus Conda environment.\",\n",
         ")\n",
         "ml_client.environments.create_or_update(env_docker_conda)"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "execution_count": 10,
+          "data": {
+            "text/plain": "Environment({'arm_type': 'environment_version', 'latest_version': None, 'image': 'mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04', 'intellectual_property': None, 'is_anonymous': False, 'auto_increment_version': False, 'auto_delete_setting': None, 'name': 'machine_learning_E2E', 'description': 'Environment created from a Docker image plus Conda environment.', 'tags': {}, 'properties': {'azureml.labels': 'latest'}, 'print_as_yaml': False, 'id': '/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourceGroups/defalt_resource_group/providers/Microsoft.MachineLearningServices/workspaces/FitwellWorkspace/environments/machine_learning_E2E/versions/1', 'Resource__source_path': '', 'base_path': '/mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code/Users/Connor_1742661257653/Project3', 'creation_context': <azure.ai.ml.entities._system_data.SystemData object at 0x76e2ef107d60>, 'serialize': <msrest.serialization.Serializer object at 0x76e2ed4cfac0>, 'version': '1', 'conda_file': {'channels': ['conda-forge'], 'dependencies': ['python=3.8', 'pip=21.2.4', 'scikit-learn=0.23.2', 'scipy=1.7.1', {'pip': ['mlflow==2.8.1', 'azureml-mlflow==1.51.0', 'azureml-inference-server-http', 'azureml-core==1.49.0', 'cloudpickle==1.6.0']}], 'name': 'sklearn-env'}, 'build': None, 'inference_config': None, 'os_type': 'Linux', 'conda_file_path': None, 'path': None, 'datastore': None, 'upload_hash': None, 'translated_conda_file': '{\\n  \"channels\": [\\n    \"conda-forge\"\\n  ],\\n  \"dependencies\": [\\n    \"python=3.8\",\\n    \"pip=21.2.4\",\\n    \"scikit-learn=0.23.2\",\\n    \"scipy=1.7.1\",\\n    {\\n      \"pip\": [\\n        \"mlflow==2.8.1\",\\n        \"azureml-mlflow==1.51.0\",\\n        \"azureml-inference-server-http\",\\n        \"azureml-core==1.49.0\",\\n        \"cloudpickle==1.6.0\"\\n      ]\\n    }\\n  ],\\n  \"name\": \"sklearn-env\"\\n}'})"
+          },
+          "metadata": {}
+        }
+      ],
+      "execution_count": 10,
+      "metadata": {
+        "gather": {
+          "logged": 1752516788678
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## **2. Model Development Workflow**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **2.1 Data Preparation**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
+      "source": [
+        "This **Data Preparation job** is designed to process an input dataset by splitting it into two parts: one for training the model and the other for testing it. The script accepts three inputs: the location of the input data (`used_cars.csv`), the ratio for splitting the data into training and testing sets (`test_train_ratio`), and the paths to save the resulting training (`train_data`) and testing (`test_data`) data. The script first reads the input CSV data from a data asset URI, then splits it using Scikit-learn's train_test_split function, and saves the two parts to the specified directories. It also logs the number of records in both the training and testing datasets using MLflow."
+      ],
       "metadata": {
         "nteract": {
           "transient": {
             "deleting": false
           }
         }
-      },
-      "source": [
-        "This **Data Preparation job** is designed to process an input dataset by splitting it into two parts: one for training the model and the other for testing it. The script accepts three inputs: the location of the input data (`used_cars.csv`), the ratio for splitting the data into training and testing sets (`test_train_ratio`), and the paths to save the resulting training (`train_data`) and testing (`test_data`) data. The script first reads the input CSV data from a data asset URI, then splits it using Scikit-learn's train_test_split function, and saves the two parts to the specified directories. It also logs the number of records in both the training and testing datasets using MLflow."
-      ]
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516788959
-        }
-      },
-      "outputs": [],
       "source": [
         "# Create a directory for the preprocessing script\n",
         "import os\n",
         "\n",
         "src_dir_job_scripts = \"./data_prep\"\n",
         "os.makedirs(src_dir_job_scripts, exist_ok=True)"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 11,
+      "metadata": {
+        "gather": {
+          "logged": 1752516788959
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "Writing ./data_prep/data_prep.py\n"
-          ]
-        }
-      ],
       "source": [
         "%%writefile {src_dir_job_scripts}/data_prep.py\n",
         "\n",
@@ -586,31 +497,33 @@
         "\n",
         "if __name__ == \"__main__\":\n",
         "    main()"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Writing ./data_prep/data_prep.py\n"
+        }
+      ],
+      "execution_count": 12,
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "#### **Define Data Preparation job**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "For this AzureML job, we define the `command` object that takes input files and output directories, then executes the script with the provided inputs and outputs. The job runs in a pre-configured AzureML environment with the necessary libraries. The result will be two separate datasets for training and testing, ready for use in subsequent steps of the machine learning pipeline."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516789944
-        }
-      },
-      "outputs": [],
       "source": [
         "from azure.ai.ml import command, Input, Output\n",
         "\n",
@@ -630,64 +543,56 @@
         "    command=\"\"\"python data_prep.py --data ${{inputs.data}} --test_train_ratio ${{inputs.test_train_ratio}} --train_data ${{outputs.train_data}} --test_data ${{outputs.test_data}}\"\"\",  # Specify the output for test data\n",
         "    environment=\"AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest\",  # Provide the environment name for execution\n",
         ")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 13,
+      "metadata": {
+        "gather": {
+          "logged": 1752516789944
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **2.2 Training the Model**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
+      "source": [
+        "This Model Training job is designed to train a **Random Forest Regressor** on the dataset that was split into training and testing sets in the previous data preparation job. This job script accepts five inputs: the path to the training data (`train_data`), the path to the testing data (`test_data`), the number of trees in the forest (`n_estimators`, with a default value of 100), the maximum depth of the trees (`max_depth`, which is set to None by default), and the path to save the trained model (`model_output`).\n",
+        "\n",
+        "The script begins by reading the training and testing data files, then processes the data to separate features (X) and target labels (y). A Random Forest Regressor model is initialized using the given n_estimators and max_depth, and it is trained using the training data. The model's performance is evaluated using the `Mean Squared Error (MSE)`. The MSE score is logged in MLflow. Finally, the trained model is saved and stored in the specified output location as an MLflow model. The job completes by logging the final MSE score and ending the MLflow run.\n"
+      ],
       "metadata": {
         "nteract": {
           "transient": {
             "deleting": false
           }
         }
-      },
-      "source": [
-        "This Model Training job is designed to train a **Random Forest Regressor** on the dataset that was split into training and testing sets in the previous data preparation job. This job script accepts five inputs: the path to the training data (`train_data`), the path to the testing data (`test_data`), the number of trees in the forest (`n_estimators`, with a default value of 100), the maximum depth of the trees (`max_depth`, which is set to None by default), and the path to save the trained model (`model_output`).\n",
-        "\n",
-        "The script begins by reading the training and testing data files, then processes the data to separate features (X) and target labels (y). A Random Forest Regressor model is initialized using the given n_estimators and max_depth, and it is trained using the training data. The model's performance is evaluated using the `Mean Squared Error (MSE)`. The MSE score is logged in MLflow. Finally, the trained model is saved and stored in the specified output location as an MLflow model. The job completes by logging the final MSE score and ending the MLflow run.\n"
-      ]
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516790162
-        }
-      },
-      "outputs": [],
       "source": [
         "# Create a directory for the preprocessing script\n",
         "import os\n",
         "\n",
         "src_dir_job_scripts = \"./model_train\"\n",
         "os.makedirs(src_dir_job_scripts, exist_ok=True)"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 14,
+      "metadata": {
+        "gather": {
+          "logged": 1752516790162
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1736950263028
-        }
-      },
-      "outputs": [
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "Writing ./model_train/model_train.py\n"
-          ]
-        }
-      ],
       "source": [
         "%%writefile {src_dir_job_scripts}/model_train.py\n",
         "\n",
@@ -760,31 +665,37 @@
         "\n",
         "if __name__ == \"__main__\":\n",
         "    main()"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Writing ./model_train/model_train.py\n"
+        }
+      ],
+      "execution_count": 15,
+      "metadata": {
+        "gather": {
+          "logged": 1736950263028
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "#### **Define Model Training Job**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "For this AzureML job, we define the `command` object that takes the paths to the training and testing data, the number of trees in the forest (`n_estimators`), and the maximum depth of the trees (`max_depth`) as inputs, and outputs the trained model. The command runs in a pre-configured AzureML environment with all the necessary libraries. The job produces a trained **Random Forest Regressor model**, which can be used for predicting the price of used cars based on the given attributes."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516790947
-        }
-      },
-      "outputs": [],
       "source": [
         "from azure.ai.ml import command, Input, Output\n",
         "\n",
@@ -806,58 +717,54 @@
         "    environment=\"AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest\",\n",
         "    compute=\"cpu-cluster\",  # Specify the compute target (e.g., \"cpu-cluster\")\n",
         ")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 16,
+      "metadata": {
+        "gather": {
+          "logged": 1752516790947
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **2.3 Registering the Best Trained Model**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
+      "source": [
+        "The **Model Registration job** is designed to take the best-trained model from the hyperparameter tuning sweep job and register it in MLflow as a versioned artifact for future use in the used car price prediction pipeline. This job script accepts one input: the path to the trained model (model). The script begins by loading the model using the `mlflow.sklearn.load_model()` function. Afterward, it registers the model in the MLflow model registry, assigning it a descriptive name (`used_cars_price_prediction_model`) and specifying an artifact path (`random_forest_price_regressor`) where the model artifacts will be stored. Using MLflow's `log_model()` function, the model is logged along with its metadata, ensuring that the model is easily trackable and retrievable for future evaluation, deployment, or retraining."
+      ],
       "metadata": {
         "nteract": {
           "transient": {
             "deleting": false
           }
         }
-      },
-      "source": [
-        "The **Model Registration job** is designed to take the best-trained model from the hyperparameter tuning sweep job and register it in MLflow as a versioned artifact for future use in the used car price prediction pipeline. This job script accepts one input: the path to the trained model (model). The script begins by loading the model using the `mlflow.sklearn.load_model()` function. Afterward, it registers the model in the MLflow model registry, assigning it a descriptive name (`used_cars_price_prediction_model`) and specifying an artifact path (`random_forest_price_regressor`) where the model artifacts will be stored. Using MLflow's `log_model()` function, the model is logged along with its metadata, ensuring that the model is easily trackable and retrievable for future evaluation, deployment, or retraining."
-      ]
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516791182
-        }
-      },
-      "outputs": [],
       "source": [
         "# Create a directory for the preprocessing script\n",
         "import os\n",
         "\n",
         "src_dir_job_scripts = \"./model_register\"\n",
         "os.makedirs(src_dir_job_scripts, exist_ok=True)"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 17,
+      "metadata": {
+        "gather": {
+          "logged": 1752516791182
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
-      "outputs": [
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "Writing ./model_register/model_register.py\n"
-          ]
-        }
-      ],
       "source": [
         "%%writefile {src_dir_job_scripts}/model_register.py\n",
         "\n",
@@ -893,37 +800,39 @@
         "\n",
         "if __name__ == \"__main__\":\n",
         "    main()"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Writing ./model_register/model_register.py\n"
+        }
+      ],
+      "execution_count": 18,
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "#### **Define Model Register Job**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
+      "source": [
+        "For this AzureML job, a `command` object is defined to execute the `model_register.py` script. It accepts the best-trained model as input, runs the script in the `AzureML-sklearn-1.0-ubuntu20.04-py38-cpu` environment, and uses the same compute cluster as the previous jobs (`cpu-cluster`). This job plays a crucial role in the pipeline by ensuring that the best-performing model identified during hyperparameter tuning is systematically stored and made available in the MLflow registry for further evaluation, deployment, or retraining. Integrating this job into the end-to-end pipeline automates the process of registering high-quality models, completing the model development lifecycle and enabling the prediction of used car prices."
+      ],
       "metadata": {
         "nteract": {
           "transient": {
             "deleting": false
           }
         }
-      },
-      "source": [
-        "For this AzureML job, a `command` object is defined to execute the `model_register.py` script. It accepts the best-trained model as input, runs the script in the `AzureML-sklearn-1.0-ubuntu20.04-py38-cpu` environment, and uses the same compute cluster as the previous jobs (`cpu-cluster`). This job plays a crucial role in the pipeline by ensuring that the best-performing model identified during hyperparameter tuning is systematically stored and made available in the MLflow registry for further evaluation, deployment, or retraining. Integrating this job into the end-to-end pipeline automates the process of registering high-quality models, completing the model development lifecycle and enabling the prediction of used car prices."
-      ]
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516792048
-        }
-      },
-      "outputs": [],
       "source": [
         "from azure.ai.ml import command, Input\n",
         "\n",
@@ -939,31 +848,31 @@
         "    environment=\"AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest\",  # Environment configuration for the model register job\n",
         "    compute=\"cpu-cluster\",  # Specify the compute target to be used for the job\n",
         ")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 19,
+      "metadata": {
+        "gather": {
+          "logged": 1752516792048
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "### **2.4. Assembling the End-to-End Workflow**"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "The end-to-end pipeline integrates all the previously defined jobs into a seamless workflow, automating the process of data preparation, model training, hyperparameter tuning, and model registration. The pipeline is designed using Azure Machine Learning's `@pipeline` decorator, specifying the compute target and providing a detailed description of the workflow."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516792601
-        }
-      },
-      "outputs": [],
       "source": [
         "from azure.ai.ml.sweep import Choice\n",
         "from azure.ai.ml.entities import Model\n",
@@ -1023,84 +932,84 @@
         "        \"pipeline_job_test_data\": preprocess_step.outputs.test_data,  # Output from preprocessing step (test data)\n",
         "        \"pipeline_job_best_model\": sweep_job.outputs.model_output,  # Output from sweep job (best model)\n",
         "    }"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 20,
+      "metadata": {
+        "gather": {
+          "logged": 1752516792601
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "1. **Data Preparation (Preprocessing Step)**:\n",
         "The pipeline starts by invoking the `step_process` job, which preprocesses the raw input data (`input_data_uri`). This step splits the dataset into training and testing sets based on the provided `test_train_ratio`. The outputs from this step include the processed training and testing datasets (`train_data` and `test_data`), which are passed as inputs to the next step."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
+      "source": [
+        "2. **Model Training**:\n",
+        "The second step in the pipeline is the `train_step`, which trains a **Random Forest Regressor model** using the preprocessed training data. The job uses `train_data` and `test_data` from the preprocessing step and accepts hyperparameters like `n_estimators` and `max_depth` to configure the model. The training step is designed to work flexibly with the parameters defined in the pipeline, allowing experimentation. This step evaluates the model's performance using the `Mean Squared Error (MSE)` metric and logs the result in MLflow. The trained model is then saved and stored in the specified output location as an MLflow model."
+      ],
       "metadata": {
         "nteract": {
           "transient": {
             "deleting": false
           }
         }
-      },
-      "source": [
-        "2. **Model Training**:\n",
-        "The second step in the pipeline is the `train_step`, which trains a **Random Forest Regressor model** using the preprocessed training data. The job uses `train_data` and `test_data` from the preprocessing step and accepts hyperparameters like `n_estimators` and `max_depth` to configure the model. The training step is designed to work flexibly with the parameters defined in the pipeline, allowing experimentation. This step evaluates the model's performance using the `Mean Squared Error (MSE)` metric and logs the result in MLflow. The trained model is then saved and stored in the specified output location as an MLflow model."
-      ]
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "3. **Hyperparameter Tuning**:\n",
         "To optimize the model's performance, a Sweep Job is defined based on the training step. The sweep job explores multiple combinations of hyperparameters (`n_estimators` and `max_depth`) using a random sampling algorithm. It aims to minimize the model's `Mean Squared Error (MSE)` to ensure accurate price predictions. The job limits are set to allow a maximum of 20 trials, with up to 10 trials running concurrently, and a total timeout of 7200 seconds (2 hours). This step identifies the best combination of hyperparameters for the model."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "4. **Model Registration**:\n",
         "Once the sweep job completes, the best-performing model is passed to the `model_register_component`. This step registers the model in the MLflow model registry, ensuring that it is versioned and available for deployment or future experimentation. The registered model includes its metadata and is stored with a descriptive name (`used_cars_price_prediction_model`)."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "5. **Pipeline Outputs**:\n",
         "The pipeline returns key outputs for further analysis, including the locations of the training and testing datasets and the best-trained model from the sweep job. These outputs ensure traceability and provide resources for subsequent tasks like evaluation and deployment."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "The pipeline is instantiated by providing the required inputs, such as the data path, test-train ratio, and initial values for hyperparameters (`n_estimators` and `max_depth`). It is then submitted to Azure Machine Learning for execution under the experiment name `price_prediction_pipeline`. Real-time logs can be streamed to monitor the pipeline's progress. Once the pipeline completes, the outputs can be accessed for verification."
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
+      "source": [
+        "# The code retrieves a specific version of a registered data asset using the ml_client object.\n",
+        "data_path = ml_client.data.get(\"used-cars-data\", version=\"1\").path # Provide the name of the data asset"
+      ],
+      "outputs": [],
+      "execution_count": 21,
       "metadata": {
         "gather": {
           "logged": 1752516793147
         }
-      },
-      "outputs": [],
-      "source": [
-        "# The code retrieves a specific version of a registered data asset using the ml_client object.\n",
-        "data_path = ml_client.data.get(\"used-cars-data\", version=\"1\").path # Provide the name of the data asset"
-      ]
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516794413
-        }
-      },
-      "outputs": [],
       "source": [
         "# Create pipeline instance\n",
         "pipeline_instance = complete_pipeline(\n",
@@ -1109,51 +1018,17 @@
         "    n_estimators=50,       # Initial value for n_estimators\n",
         "    max_depth=5             # Initial value for max depth\n",
         ")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": 22,
+      "metadata": {
+        "gather": {
+          "logged": 1752516794413
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516723813
-        }
-      },
-      "outputs": [
-        {
-          "name": "stderr",
-          "output_type": "stream",
-          "text": [
-            "Class AutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n",
-            "Class AutoDeleteConditionSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n",
-            "Class BaseAutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n",
-            "Class IntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n",
-            "Class ProtectionLevelSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n",
-            "Class BaseIntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n",
-            "\u001b[32mUploading model_train (0.0 MBs): 100%|██████████| 2936/2936 [00:00<00:00, 21342247.04it/s]\n",
-            "\u001b[39m\n",
-            "\n",
-            "pathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\n",
-            "pathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\n",
-            "pathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\n",
-            "pathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\n"
-          ]
-        },
-        {
-          "name": "stdout",
-          "output_type": "stream",
-          "text": [
-            "RunId: silly_evening_1zb5229v8c\n",
-            "Web View: https://ml.azure.com/runs/silly_evening_1zb5229v8c?wsid=/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourcegroups/defalt_resource_group/workspaces/FitwellWorkspace\n",
-            "\n",
-            "Streaming logs/azureml/executionlogs.txt\n",
-            "========================================\n",
-            "\n",
-            "[2025-07-14 18:13:30Z] Completing processing run id bc3c404e-f4d1-4549-8f39-c22a9574ade9.\n",
-            "[2025-07-14 18:13:32Z] Submitting 2 runs, first five are: 2941bdf2:c7326941-a9a6-4b78-bd28-24d0fe66503f,3f9ead1f:7a808115-52a5-4d4d-9196-a7e330469ed4\n"
-          ]
-        }
-      ],
       "source": [
         "# Submit the pipeline to Azure ML\n",
         "pipeline_job = ml_client.jobs.create_or_update(\n",
@@ -1163,46 +1038,57 @@
         "\n",
         "# Stream the output of the job for real-time logs\n",
         "ml_client.jobs.stream(pipeline_job.name)"
-      ]
+      ],
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": "Class AutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass AutoDeleteConditionSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass BaseAutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass IntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass ProtectionLevelSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass BaseIntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n\u001b[32mUploading model_train (0.0 MBs): 100%|██████████| 2936/2936 [00:00<00:00, 21342247.04it/s]\n\u001b[39m\n\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\n"
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "RunId: silly_evening_1zb5229v8c\nWeb View: https://ml.azure.com/runs/silly_evening_1zb5229v8c?wsid=/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourcegroups/defalt_resource_group/workspaces/FitwellWorkspace\n\nStreaming logs/azureml/executionlogs.txt\n========================================\n\n[2025-07-14 18:13:30Z] Completing processing run id bc3c404e-f4d1-4549-8f39-c22a9574ade9.\n[2025-07-14 18:13:32Z] Submitting 2 runs, first five are: 2941bdf2:c7326941-a9a6-4b78-bd28-24d0fe66503f,3f9ead1f:7a808115-52a5-4d4d-9196-a7e330469ed4\n"
+        }
+      ],
+      "execution_count": 23,
+      "metadata": {
+        "gather": {
+          "logged": 1752516723813
+        }
+      }
     },
     {
       "cell_type": "code",
+      "source": [
+        "print(pipeline_job.outputs)"
+      ],
+      "outputs": [],
       "execution_count": null,
       "metadata": {
         "gather": {
           "logged": 1752516723850
         }
-      },
-      "outputs": [],
-      "source": [
-        "print(pipeline_job.outputs)"
-      ]
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516723897
-        }
-      },
-      "outputs": [],
       "source": [
         "# Access pipeline outputs (optional, after job completion)\n",
         "print(f\"Train data location: {pipeline_job.outputs['pipeline_job_train_data']}\")\n",
         "print(f\"Test data location: {pipeline_job.outputs['pipeline_job_test_data']}\")\n",
         "print(f\"Best model location: {pipeline_job.outputs['pipeline_job_best_model']}\")"
-      ]
-    },
-    {
-      "cell_type": "code",
+      ],
+      "outputs": [],
       "execution_count": null,
       "metadata": {
         "gather": {
-          "logged": 1752516723932
+          "logged": 1752516723897
         }
-      },
-      "outputs": [],
+      }
+    },
+    {
+      "cell_type": "code",
       "source": [
         "# Check the actual pipeline job status and outputs\n",
         "print(\"=== Pipeline Job Status Check ===\")\n",
@@ -1256,17 +1142,17 @@
         "print(f\"Experiment: {current_job.experiment_name}\")\n",
         "print(f\"Created: {current_job.creation_context.created_at}\")\n",
         "print(f\"Web View: https://ml.azure.com/runs/{current_job.name}\")"
-      ]
-    },
-    {
-      "cell_type": "code",
+      ],
+      "outputs": [],
       "execution_count": null,
       "metadata": {
         "gather": {
-          "logged": 1752516724010
+          "logged": 1752516723932
         }
-      },
-      "outputs": [],
+      }
+    },
+    {
+      "cell_type": "code",
       "source": [
         "# Get actual resolved paths from individual job components\n",
         "print(\"=== Getting Actual Output Paths ===\")\n",
@@ -1327,11 +1213,17 @@
         "    print(\"\\n💡 You can access the outputs manually through the Azure ML portal:\")\n",
         "    print(f\"   https://ml.azure.com/runs/{pipeline_job.name}\")\n",
         "    print(\"\\n   Navigate to: Outputs + logs → pipeline_outputs to see actual paths\")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {
+        "gather": {
+          "logged": 1752516724010
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## ✅ **Pipeline Execution Summary**\n",
         "\n",
@@ -1377,17 +1269,11 @@
         "4. **Pipeline Automation**: Set up triggers for automated retraining when new data arrives\n",
         "\n",
         "The error you encountered has been **completely resolved**, and the MLOps pipeline is now fully operational! 🚀\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516724071
-        }
-      },
-      "outputs": [],
       "source": [
         "# 🔍 Practical Example: Access the Registered Model\n",
         "print(\"=== Accessing the Registered Model ===\")\n",
@@ -1429,18 +1315,24 @@
         "print(\"✅ Best model identified and registered in MLflow\")\n",
         "print(\"✅ End-to-end MLOps pipeline established\")\n",
         "print(\"✅ Used car price prediction model ready for deployment\")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {
+        "gather": {
+          "logged": 1752516724071
+        }
+      }
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {},
+      "source": [],
       "outputs": [],
-      "source": []
+      "execution_count": null,
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 📋 **MLOps Workflow Components & CI/CD Documentation**\n",
         "\n",
@@ -1614,11 +1506,11 @@
         "- **Integration Tests**: End-to-end pipeline validation\n",
         "- **Performance Tests**: Model accuracy and latency benchmarks\n",
         "- **Security Scans**: Dependency vulnerability checks\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## **📸 Workflow Screenshots**\n",
         "\n",
@@ -1712,17 +1604,11 @@
         "- **MLflow UI**: Model registry and experiment tracking\n",
         "- **Azure Portal**: Resource group and ML workspace overview\n",
         "- **VS Code**: Pipeline execution logs and outputs\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516724111
-        }
-      },
-      "outputs": [],
       "source": [
         "# 🔄 **Demonstration: Workflow Update and Re-execution**\n",
         "# This cell demonstrates making updates to trigger CI/CD validation\n",
@@ -1760,17 +1646,17 @@
         "print(\"\\n✅ Updated pipeline ready for submission\")\n",
         "print(\"💡 This demonstrates how parameter changes trigger workflow re-execution\")\n",
         "print(\"📊 Results will be compared against the original pipeline run for validation\")"
-      ]
-    },
-    {
-      "cell_type": "code",
+      ],
+      "outputs": [],
       "execution_count": null,
       "metadata": {
         "gather": {
-          "logged": 1752516724153
+          "logged": 1752516724111
         }
-      },
-      "outputs": [],
+      }
+    },
+    {
+      "cell_type": "code",
       "source": [
         "# 📊 **Pipeline Execution and Monitoring**\n",
         "# Run this cell to execute the updated pipeline and monitor the CI/CD process\n",
@@ -1824,11 +1710,17 @@
         "print(\"7. 🚀 Pipeline Orchestration → End-to-end automation\")\n",
         "print(\"8. ✅ CI/CD Integration → Validation and deployment gates\")\n",
         "print(\"=\"*70)"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {
+        "gather": {
+          "logged": 1752516724153
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## **🏗️ Workflow Architecture Diagram**\n",
         "\n",
@@ -1925,11 +1817,11 @@
         "5. View: Graph/Overview/Outputs/Logs\n",
         "\n",
         "**✅ The MLOps workflow is now fully documented with comprehensive component explanations and screenshot guidelines. The pipeline demonstrates enterprise-grade CI/CD integration with automated validation, model versioning, and deployment readiness.**\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 🎯 **MLOps Pipeline Presentation: Step-by-Step Build Process**\n",
         "\n",
@@ -2223,17 +2115,11 @@
         "- Integration with existing systems\n",
         "- Cost optimization strategies\n",
         "- Security and compliance considerations\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516724196
-        }
-      },
-      "outputs": [],
       "source": [
         "# 📊 **Presentation Summary Generator**\n",
         "# Use this cell to generate presentation materials and validate pipeline status\n",
@@ -2283,11 +2169,17 @@
         "# Execute the summary generator\n",
         "result = generate_presentation_summary()\n",
         "print(f\"\\n{result}\")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {
+        "gather": {
+          "logged": 1752516724196
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "## 📋 **Presentation Preparation Checklist**\n",
         "\n",
@@ -2378,11 +2270,11 @@
         "- [ ] **Support Structure**: Establish ongoing maintenance plan\n",
         "\n",
         "**📌 Remember**: Focus on business value first, then technical implementation. Keep demos concise and highlight the automated, scalable nature of the solution.\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 🎯 **Executive Summary: 1-2 Slide Presentation**\n",
         "## **For Non-Technical Audiences**\n",
@@ -2488,17 +2380,11 @@
         "\n",
         "**\"How quickly can we start using it?\"**\n",
         "→ \"The system is ready now. We just need to connect it to your inventory system and provide brief staff training - typically 1-2 days total.\"\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516724371
-        }
-      },
-      "outputs": [],
       "source": [
         "# 📊 Executive Summary Generator - Business Metrics\n",
         "# Simple visual summary for non-technical audiences\n",
@@ -2564,11 +2450,17 @@
         "print(\"• Staff Efficiency: 99% time savings on pricing tasks\")\n",
         "print(\"• System Reliability: 24/7 automated operation\")\n",
         "print(\"• Scalability: Unlimited vehicle processing capacity\")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {
+        "gather": {
+          "logged": 1752516724371
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 🔧 **Simple Guide: How We Built the Automated Pricing System**\n",
         "## **1-2 Slide Presentation - Pipeline Building Steps**\n",
@@ -2670,17 +2562,11 @@
         "\n",
         "**Timeline**: \n",
         "\"The entire build process took 6 weeks, with rigorous testing at each stage to ensure reliability and performance.\"\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516724403
-        }
-      },
-      "outputs": [],
       "source": [
         "# 🔧 Pipeline Building Steps - Visual Summary\n",
         "# Simple overview of the 6 steps taken to build the MLOps pipeline\n",
@@ -2767,11 +2653,17 @@
         "print(\"✅ System tested and validated for accuracy\") \n",
         "print(\"✅ Ready for deployment in dealership operations\")\n",
         "print(\"✅ Continuous learning and improvement capabilities active\")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {
+        "gather": {
+          "logged": 1752516724403
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 📊 **Executive Summary**\n",
         "## **Conclusions, Actionable Insights & Recommendations**\n",
@@ -2889,11 +2781,11 @@
         "- **Support Structure**: Technical support team for system maintenance\n",
         "\n",
         "**🚀 Next Step**: Immediate deployment approval to capture identified $525,000+ annual value\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 🚗 **Business Problem Overview**\n",
         "\n",
@@ -2914,11 +2806,11 @@
         "- **Revenue Loss**: Inconsistent pricing leads to missed profit opportunities and competitive disadvantage\n",
         "- **Customer Experience**: Slow pricing responses damage customer satisfaction and sales velocity\n",
         "- **Scalability Barrier**: Manual processes cannot support business growth and increased inventory\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 💡 **Solution Approach**\n",
         "\n",
@@ -2942,11 +2834,11 @@
         "- **Development Process**: 6-step pipeline build (Infrastructure → Data → Model → Optimization → Registry → Automation)\n",
         "- **Validation Strategy**: Comprehensive testing with hyperparameter tuning and performance optimization\n",
         "- **Deployment Model**: Production-ready automated system with continuous learning capabilities\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 📊 **Data Overview**\n",
         "\n",
@@ -2968,11 +2860,11 @@
         "- **Target Variable**: Price in lakhs (Indian currency units)\n",
         "- **Data Quality**: Clean dataset ready for machine learning with minimal preprocessing required\n",
         "- **Business Relevance**: Covers all critical factors that influence vehicle pricing decisions\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 🐙 **GitHub Repository**\n",
         "\n",
@@ -3123,17 +3015,11 @@
         "- **Forks**: 🍴 Active development forks\n",
         "- **Issues**: 🐛 Open issues for enhancement\n",
         "- **Discussions**: 💬 Community Q&A and feature requests\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "gather": {
-          "logged": 1752516724435
-        }
-      },
-      "outputs": [],
       "source": [
         "# 🛠️ GitHub Repository Setup & File Creation\n",
         "# This cell helps create all necessary repository files\n",
@@ -3477,11 +3363,17 @@
         "print(f\"\\n🎉 Repository setup complete!\")\n",
         "print(f\"📂 Repository: {repo_details['url']}\")\n",
         "print(f\"📋 All files ready for GitHub upload!\")"
-      ]
+      ],
+      "outputs": [],
+      "execution_count": null,
+      "metadata": {
+        "gather": {
+          "logged": 1752516724435
+        }
+      }
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# ⚙️ **GitHub Actions Workflow**\n",
         "\n",
@@ -3720,11 +3612,11 @@
         "- **Efficiency**: Reduces manual intervention from hours to minutes\n",
         "- **Traceability**: Complete audit trail of all changes and deployments\n",
         "- **Reliability**: Standardized process reduces human error and deployment failures\n"
-      ]
+      ],
+      "metadata": {}
     },
     {
       "cell_type": "markdown",
-      "metadata": {},
       "source": [
         "# 📸 **GitHub Actions CI/CD Validation Screenshot Guide**\n",
         "\n",
@@ -3921,7 +3813,8 @@
         "- `cicd-pipeline-success.png` (completed workflow)\n",
         "\n",
         "Place the screenshot files in your `docs/` folder for easy reference in presentations and documentation.\n"
-      ]
+      ],
+      "metadata": {}
     }
   ],
   "metadata": {
