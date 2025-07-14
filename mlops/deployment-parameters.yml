@@ -1,0 +1,40 @@
+# Deployment Parameters for GitHub Actions
+# This file contains parameters used by the CI/CD workflow
+
+workflow:
+  name: "deploy-model-training-pipeline"
+  trigger_branches: ["main"]
+  
+jobs:
+  compute_creation:
+    cluster_name: "test-cluster"
+    vm_size: "Standard_DS11_v2"
+    min_instances: 0
+    max_instances: 1
+    cluster_tier: "dedicated"
+    
+  dataset_registration:
+    name: "used-cars-data"
+    description: "A dataset of used cars for price prediction with various attributes like segment, mileage, engine specifications"
+    data_file: "mlops/azureml/train/data.yml"
+    
+  environment_registration:
+    environment_file: "mlops/azureml/train/train-env.yml"
+    conda_file: "data-science/environment/train-conda.yml"
+    
+  pipeline_execution:
+    parameters_file: "mlops/azureml/train/newpipeline.yml"
+    job_name: "mlops-pipeline"
+    
+# GitHub Secrets Required:
+secrets_required:
+  - "AZURE_CLIENT_ID"      # App Registration Client ID
+  - "AZURE_TENANT_ID"      # Azure AD Tenant ID  
+  - "AZURE_SUBSCRIPTION_ID" # Azure Subscription ID
+
+# Target Azure Resources
+target:
+  subscription_id: "f7694127-2f65-4c53-aaef-a2750f7337d3"
+  resource_group: "defalt_resource_group" 
+  workspace_name: "FitwellWorkspace"
+  location: "eastus"
