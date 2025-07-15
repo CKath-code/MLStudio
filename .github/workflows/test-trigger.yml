@@ -1,0 +1,22 @@
+name: Test Workflow Trigger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Test Step
+        run: |
+          echo "✅ Workflow triggered successfully!"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Event: ${{ github.event_name }}"
+          date

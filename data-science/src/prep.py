@@ -32,7 +32,7 @@ def main(args):  # Write the function name for the main data preparation logic
 
     # Encode categorical feature
     le = LabelEncoder()
-    df['Fuel_Type'] = le.fit_transform(df['Fuel_Type'])  # Write code to encode the categorical feature
+    df['Segment'] = le.fit_transform(df['Segment'])  # Write code to encode the categorical feature
 
     # Split Data into train and test datasets
     train_df, test_df = train_test_split(df, test_size=args.test_train_ratio, random_state=42)  #  Write code to split the data into train and test datasets
@@ -51,13 +51,13 @@ if __name__ == "__main__":
     mlflow.start_run()
 
     # Parse Arguments
-    args = _______()  # Call the function to parse arguments
+    args = parse_args()  # Call the function to parse arguments
 
     lines = [
-        f"Raw data path: {args._______}",  # Print the raw_data path
-        f"Train dataset output path: {args._______}",  # Print the train_data path
-        f"Test dataset path: {args._______}",  # Print the test_data path
-        f"Test-train ratio: {args._______}",  # Print the test_train_ratio
+        f"Raw data path: {args.raw_data}",  # Print the raw_data path
+        f"Train dataset output path: {args.train_data}",  # Print the train_data path
+        f"Test dataset path: {args.test_data}",  # Print the test_data path
+        f"Test-train ratio: {args.test_train_ratio}",  # Print the test_train_ratio
     ]
 
     for line in lines:

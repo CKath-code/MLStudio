@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
 
-name: used-cars-train-env  # Provide the name for the environment
-image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04
+name: used-cars-train-env
+image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
 conda_file: ../../../data-science/environment/train-conda.yml
-description: Training environment for used cars price prediction with sklearn and MLflow # Provide the name for the environment
+description: Training environment for used cars price prediction with sklearn and MLflow

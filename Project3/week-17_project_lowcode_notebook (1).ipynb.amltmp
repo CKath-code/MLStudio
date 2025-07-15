@@ -100,7 +100,7 @@
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "Requirement already satisfied: azure-ai-ml in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (1.28.1)\nRequirement already satisfied: azure-monitor-opentelemetry in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.6.10)\nRequirement already satisfied: azure-common>=1.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.1.28)\nRequirement already satisfied: colorama<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.4.6)\nRequirement already satisfied: jsonschema<5.0.0,>=4.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.24.0)\nRequirement already satisfied: pydash<9.0.0,>=6.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (8.0.5)\nRequirement already satisfied: pyyaml<7.0.0,>=5.1.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (6.0.2)\nRequirement already satisfied: tqdm<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.67.1)\nRequirement already satisfied: azure-mgmt-core>=1.3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.5.0)\nRequirement already satisfied: six>=1.11.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.17.0)\nRequirement already satisfied: azure-storage-file-share in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.21.0)\nRequirement already satisfied: azure-storage-file-datalake>=12.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.20.0)\nRequirement already satisfied: msrest<1.0.0,>=0.6.18 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.1)\nRequirement already satisfied: azure-core>=1.23.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.33.0)\nRequirement already satisfied: strictyaml<2.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.7.3)\nRequirement already satisfied: marshmallow<4.0.0,>=3.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (3.26.1)\nRequirement already satisfied: azure-storage-blob>=12.10.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.25.1)\nRequirement already satisfied: isodate<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.2)\nRequirement already satisfied: pyjwt<3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (2.4.0)\nRequirement already satisfied: typing-extensions<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.14.0)\nRequirement already satisfied: requests>=2.21.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core>=1.23.0->azure-ai-ml) (2.32.3)\nRequirement already satisfied: cryptography>=2.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-storage-blob>=12.10.0->azure-ai-ml) (38.0.4)\nRequirement already satisfied: jsonschema-specifications>=2023.03.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (2025.4.1)\nRequirement already satisfied: attrs>=22.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (25.3.0)\nRequirement already satisfied: referencing>=0.28.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.36.2)\nRequirement already satisfied: rpds-py>=0.7.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.24.0)\nRequirement already satisfied: packaging>=17.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from marshmallow<4.0.0,>=3.5->azure-ai-ml) (25.0)\nRequirement already satisfied: requests-oauthlib>=0.5.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2.0.0)\nRequirement already satisfied: certifi>=2017.4.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2025.4.26)\nRequirement already satisfied: python-dateutil>=2.6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from strictyaml<2.0.0->azure-ai-ml) (2.9.0.post0)\nRequirement already satisfied: opentelemetry-instrumentation-flask<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-resource-detector-azure~=0.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.1.5)\nRequirement already satisfied: opentelemetry-instrumentation-django<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-urllib3<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: azure-monitor-opentelemetry-exporter~=1.0.0b31 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b39)\nRequirement already satisfied: opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-requests<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: azure-core-tracing-opentelemetry~=1.0.0b11 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b12)\nRequirement already satisfied: opentelemetry-instrumentation-urllib<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-sdk<1.32,>=1.28.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\nRequirement already satisfied: opentelemetry-api>=1.12.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\nRequirement already satisfied: azure-identity~=1.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.21.0)\nRequirement already satisfied: fixedint==0.1.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (0.1.6)\nRequirement already satisfied: psutil<8,>=5.9 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (7.0.0)\nRequirement already satisfied: cffi>=1.12 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (1.17.1)\nRequirement already satisfied: opentelemetry-semantic-conventions==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-wsgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-util-http==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: wrapt<2.0.0,>=1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.14.1)\nRequirement already satisfied: deprecated>=1.2.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-semantic-conventions==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.2.18)\nRequirement already satisfied: importlib-metadata<8.7.0,>=6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (8.2.0)\nRequirement already satisfied: opentelemetry-instrumentation-asgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: asgiref~=3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-asgi==0.52b1->opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (3.9.1)\nRequirement already satisfied: opentelemetry-instrumentation-dbapi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: charset-normalizer<4,>=2 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.4.1)\nRequirement already satisfied: urllib3<3,>=1.21.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (1.26.20)\nRequirement already satisfied: idna<4,>=2.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.10)\nRequirement already satisfied: oauthlib>=3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests-oauthlib>=0.5.0->msrest<1.0.0,>=0.6.18->azure-ai-ml) (3.2.2)\nRequirement already satisfied: msal-extensions>=1.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.2.0)\nRequirement already satisfied: msal>=1.30.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.32.3)\nRequirement already satisfied: pycparser in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cffi>=1.12->cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (2.22)\nRequirement already satisfied: zipp>=0.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from importlib-metadata<8.7.0,>=6.0->opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (3.19.2)\nRequirement already satisfied: portalocker<3,>=1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msal-extensions>=1.2.0->azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (2.10.1)\n"
+          "text": "Requirement already satisfied: azure-ai-ml in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (1.28.1)\nRequirement already satisfied: azure-storage-file-share in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.21.0)\nRequirement already satisfied: marshmallow<4.0.0,>=3.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (3.26.1)\nRequirement already satisfied: msrest<1.0.0,>=0.6.18 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.1)\nRequirement already satisfied: azure-storage-blob>=12.10.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.25.1)\nRequirement already satisfied: azure-storage-file-datalake>=12.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (12.20.0)\nRequirement already satisfied: pyjwt<3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (2.4.0)\nRequirement already satisfied: colorama<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.4.6)\nRequirement already satisfied: isodate<1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (0.7.2)\nRequirement already satisfied: azure-monitor-opentelemetry in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.6.10)\nRequirement already satisfied: azure-mgmt-core>=1.3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.5.0)\nRequirement already satisfied: azure-common>=1.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.1.28)\nRequirement already satisfied: jsonschema<5.0.0,>=4.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.24.0)\nRequirement already satisfied: strictyaml<2.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.7.3)\nRequirement already satisfied: six>=1.11.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.17.0)\nRequirement already satisfied: azure-core>=1.23.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (1.33.0)\nRequirement already satisfied: pyyaml<7.0.0,>=5.1.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (6.0.2)\nRequirement already satisfied: pydash<9.0.0,>=6.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (8.0.5)\nRequirement already satisfied: tqdm<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.67.1)\nRequirement already satisfied: typing-extensions<5.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-ai-ml) (4.14.0)\nRequirement already satisfied: requests>=2.21.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core>=1.23.0->azure-ai-ml) (2.32.3)\nRequirement already satisfied: cryptography>=2.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-storage-blob>=12.10.0->azure-ai-ml) (38.0.4)\nRequirement already satisfied: referencing>=0.28.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.36.2)\nRequirement already satisfied: jsonschema-specifications>=2023.03.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (2025.4.1)\nRequirement already satisfied: rpds-py>=0.7.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (0.24.0)\nRequirement already satisfied: attrs>=22.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from jsonschema<5.0.0,>=4.0.0->azure-ai-ml) (25.3.0)\nRequirement already satisfied: packaging>=17.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from marshmallow<4.0.0,>=3.5->azure-ai-ml) (25.0)\nRequirement already satisfied: requests-oauthlib>=0.5.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2.0.0)\nRequirement already satisfied: certifi>=2017.4.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msrest<1.0.0,>=0.6.18->azure-ai-ml) (2025.4.26)\nRequirement already satisfied: python-dateutil>=2.6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from strictyaml<2.0.0->azure-ai-ml) (2.9.0.post0)\nRequirement already satisfied: opentelemetry-instrumentation-urllib3<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-urllib<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-requests<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-flask<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-resource-detector-azure~=0.1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.1.5)\nRequirement already satisfied: azure-monitor-opentelemetry-exporter~=1.0.0b31 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b39)\nRequirement already satisfied: azure-core-tracing-opentelemetry~=1.0.0b11 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.0.0b12)\nRequirement already satisfied: opentelemetry-instrumentation-django<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-sdk<1.32,>=1.28.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\nRequirement already satisfied: opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-api>=1.12.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (1.31.1)\nRequirement already satisfied: psutil<8,>=5.9 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (7.0.0)\nRequirement already satisfied: azure-identity~=1.17 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.21.0)\nRequirement already satisfied: fixedint==0.1.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (0.1.6)\nRequirement already satisfied: cffi>=1.12 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (1.17.1)\nRequirement already satisfied: opentelemetry-instrumentation==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-instrumentation-wsgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-util-http==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: opentelemetry-semantic-conventions==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: wrapt<2.0.0,>=1.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.14.1)\nRequirement already satisfied: deprecated>=1.2.6 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-semantic-conventions==0.52b1->opentelemetry-instrumentation-django<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (1.2.18)\nRequirement already satisfied: importlib-metadata<8.7.0,>=6.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (8.2.0)\nRequirement already satisfied: opentelemetry-instrumentation-asgi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: asgiref~=3.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-asgi==0.52b1->opentelemetry-instrumentation-fastapi<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (3.9.1)\nRequirement already satisfied: opentelemetry-instrumentation-dbapi==0.52b1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from opentelemetry-instrumentation-psycopg2<0.53b0,>=0.49b0->azure-monitor-opentelemetry->azure-ai-ml) (0.52b1)\nRequirement already satisfied: idna<4,>=2.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.10)\nRequirement already satisfied: charset-normalizer<4,>=2 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (3.4.1)\nRequirement already satisfied: urllib3<3,>=1.21.1 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests>=2.21.0->azure-core>=1.23.0->azure-ai-ml) (1.26.20)\nRequirement already satisfied: oauthlib>=3.0.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from requests-oauthlib>=0.5.0->msrest<1.0.0,>=0.6.18->azure-ai-ml) (3.2.2)\nRequirement already satisfied: msal-extensions>=1.2.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.2.0)\nRequirement already satisfied: msal>=1.30.0 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (1.32.3)\nRequirement already satisfied: pycparser in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from cffi>=1.12->cryptography>=2.1.4->azure-storage-blob>=12.10.0->azure-ai-ml) (2.22)\nRequirement already satisfied: zipp>=0.5 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from importlib-metadata<8.7.0,>=6.0->opentelemetry-api>=1.12.0->azure-core-tracing-opentelemetry~=1.0.0b11->azure-monitor-opentelemetry->azure-ai-ml) (3.19.2)\nRequirement already satisfied: portalocker<3,>=1.4 in /anaconda/envs/azureml_py38/lib/python3.10/site-packages (from msal-extensions>=1.2.0->azure-identity~=1.17->azure-monitor-opentelemetry-exporter~=1.0.0b31->azure-monitor-opentelemetry->azure-ai-ml) (2.10.1)\n"
         }
       ],
       "execution_count": 1,
@@ -112,11 +112,11 @@
         "import os\n",
         "print(\"Current working directory:\", os.getcwd())\n",
         "print(\"Files in current directory:\", os.listdir('.'))\n",
-        "print(\"File exists check:\", os.path.exists('used_cars.csv'))\n",
+        "print(\"File exists check:\", os.path.exists('used_cars.  csv'))\n",
         "\n",
         "# Check if the data asset already exists\n",
         "try:\n",
-        "    existing_data = ml_client.data.get(\"used-cars-data\", version=\"1\")\n",
+        "    existing_data = ml_client.data.get(\"used-cars-data1\", version=\"1\")\n",
         "    print(\"Data asset already exists:\", existing_data.path)\n",
         "except Exception as e:\n",
         "    print(\"Data asset doesn't exist yet:\", str(e))"
@@ -125,10 +125,10 @@
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "Current working directory: /mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code/Users/Connor_1742661257653/Project3\nFiles in current directory: ['.amlignore', '.amlignore.amltmp', '.ipynb_aml_checkpoints', 'used_cars.csv', 'Week-17_Project_LowCode_Notebook (1).ipynb', 'week-17_project_lowcode_notebook (1).ipynb.amltmp']\nFile exists check: True\nData asset doesn't exist yet: name 'ml_client' is not defined\n"
+          "text": "Current working directory: /mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code\nFiles in current directory: ['Logs', 'Users']\nFile exists check: False\nData asset doesn't exist yet: name 'ml_client' is not defined\n"
         }
       ],
-      "execution_count": 2,
+      "execution_count": null,
       "metadata": {
         "gather": {
           "logged": 1752516704945
@@ -252,34 +252,63 @@
     {
       "cell_type": "code",
       "source": [
+        "# Path to the local dataset (using correct absolute path)\n",
+        "import os\n",
+        "local_data_path = '/home/azureuser/cloudfiles/code/Users/Connor_1742661257653/Project3/used_cars.csv'\n",
+        "print(f\"Data path: {local_data_path}\")\n",
+        "\n",
+        "# Verify the file exists\n",
+        "if os.path.exists(local_data_path):\n",
+        "    print(\"✅ File exists!\")\n",
+        "    # Show file size\n",
+        "    file_size = os.path.getsize(local_data_path)\n",
+        "    print(f\"File size: {file_size} bytes\")\n",
+        "else:\n",
+        "    print(\"❌ File not found!\")\n",
+        "    # Try to find the file\n",
+        "    possible_paths = [\n",
+        "        '/home/azureuser/cloudfiles/code/Users/Connor_1742661257653/Project3/used_cars.csv',\n",
+        "        './used_cars.csv',\n",
+        "        '../Project3/used_cars.csv',\n",
+        "        'used_cars.csv'\n",
+        "    ]\n",
+        "    for path in possible_paths:\n",
+        "        if os.path.exists(path):\n",
+        "            print(f\"✅ Found file at: {path}\")\n",
+        "            local_data_path = path\n",
+        "            break\n",
+        "\n",
+        "# Create and register the dataset as an AzureML data asset with a new name\n",
         "from azure.ai.ml.entities import Data\n",
         "from azure.ai.ml.constants import AssetTypes\n",
+        "import datetime\n",
         "\n",
-        "# Path to the local dataset - use absolute path\n",
-        "\"\"\"local_data_path = '/home/azureuser/cloudfiles/code/Users/Connor_1742661257653/Project 3/used_cars.csv'\n",
+        "# Use a timestamp to make the name unique\n",
+        "timestamp = datetime.datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n",
+        "data_asset_name = f\"used-cars-dataset-{timestamp}\"\n",
         "\n",
-        "# Create and register the dataset as an AzureML data asset\n",
         "data_asset = Data(\n",
         "    path=local_data_path,\n",
         "    type=AssetTypes.URI_FILE, \n",
         "    description=\"A dataset of used cars for price prediction\",\n",
-        "    name=\"used-cars-data\"\n",
+        "    name=data_asset_name\n",
         ")\n",
-        "\"\"\"\n",
         "\n",
-        "# Path to the local dataset\n",
-        "local_data_path = 'used_cars.csv'\n",
-        "\n",
-        "# Create and register the dataset as an AzureML data asset\n",
-        "data_asset = Data(\n",
-        "    path=local_data_path,\n",
-        "    type=AssetTypes.URI_FILE, \n",
-        "    description=\"A dataset of used cars for price prediction\",\n",
-        "    name=\"used-cars-data\"\n",
-        ")"
+        "print(f\"Data asset name: {data_asset_name}\")"
       ],
-      "outputs": [],
-      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Data path: /home/azureuser/cloudfiles/code/Users/Connor_1742661257653/Project3/used_cars.csv\n\n✅ File exists!\nFile size: 9469 bytes✅ File exists!\nFile size: 9469 bytes"
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "\nData asset name: used-cars-dataset-20250714_184257\nData asset name: used-cars-dataset-20250714_184257\n"
+        }
+      ],
+      "execution_count": 12,
       "metadata": {
         "gather": {
           "logged": 1752516716507
@@ -289,29 +318,19 @@
     {
       "cell_type": "code",
       "source": [
-        "ml_client.data.create_or_update(data_asset)"
+        "ml_client.data.create_or_update(data_asset) "
       ],
       "outputs": [
         {
-          "output_type": "error",
-          "ename": "HttpResponseError",
-          "evalue": "(UserError) Can't create an active version in an archived container. Please restore the container or mark the version as archived.\nCode: UserError\nMessage: Can't create an active version in an archived container. Please restore the container or mark the version as archived.\nAdditional Information:Type: ComponentName\nInfo: {\n    \"value\": \"managementfrontend\"\n}Type: Correlation\nInfo: {\n    \"value\": {\n        \"operation\": \"fe35ce19637b331d2dbc05a4b9fc7e4a\",\n        \"request\": \"9caed9c02a2414c5\"\n    }\n}Type: Environment\nInfo: {\n    \"value\": \"eastus\"\n}Type: Location\nInfo: {\n    \"value\": \"eastus\"\n}Type: Time\nInfo: {\n    \"value\": \"2025-07-14T18:12:00.9052847+00:00\"\n}",
-          "traceback": [
-            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
-            "\u001b[0;31mHttpResponseError\u001b[0m                         Traceback (most recent call last)",
-            "Cell \u001b[0;32mIn[7], line 1\u001b[0m\n\u001b[0;32m----> 1\u001b[0m \u001b[43mml_client\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mdata\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mcreate_or_update\u001b[49m\u001b[43m(\u001b[49m\u001b[43mdata_asset\u001b[49m\u001b[43m)\u001b[49m\n",
-            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.10/site-packages/azure/ai/ml/_telemetry/activity.py:288\u001b[0m, in \u001b[0;36mmonitor_with_activity.<locals>.monitor.<locals>.wrapper\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m    284\u001b[0m     \u001b[38;5;28;01mwith\u001b[39;00m tracer\u001b[38;5;241m.\u001b[39mstart_as_current_span(ACTIVITY_SPAN):\n\u001b[1;32m    285\u001b[0m         \u001b[38;5;28;01mwith\u001b[39;00m log_activity(\n\u001b[1;32m    286\u001b[0m             logger\u001b[38;5;241m.\u001b[39mpackage_logger, activity_name \u001b[38;5;129;01mor\u001b[39;00m f\u001b[38;5;241m.\u001b[39m\u001b[38;5;18m__name__\u001b[39m, activity_type, custom_dimensions\n\u001b[1;32m    287\u001b[0m         ):\n\u001b[0;32m--> 288\u001b[0m             \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    289\u001b[0m \u001b[38;5;28;01melif\u001b[39;00m \u001b[38;5;28mhasattr\u001b[39m(logger, \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mpackage_logger\u001b[39m\u001b[38;5;124m\"\u001b[39m):\n\u001b[1;32m    290\u001b[0m     \u001b[38;5;28;01mwith\u001b[39;00m log_activity(logger\u001b[38;5;241m.\u001b[39mpackage_logger, activity_name \u001b[38;5;129;01mor\u001b[39;00m f\u001b[38;5;241m.\u001b[39m\u001b[38;5;18m__name__\u001b[39m, activity_type, custom_dimensions):\n",
-            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.10/site-packages/azure/ai/ml/operations/_data_operations.py:425\u001b[0m, in \u001b[0;36mDataOperations.create_or_update\u001b[0;34m(self, data)\u001b[0m\n\u001b[1;32m    418\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28mstr\u001b[39m(ex) \u001b[38;5;241m==\u001b[39m ASSET_PATH_ERROR:\n\u001b[1;32m    419\u001b[0m         \u001b[38;5;28;01mraise\u001b[39;00m AssetPathException(\n\u001b[1;32m    420\u001b[0m             message\u001b[38;5;241m=\u001b[39mCHANGED_ASSET_PATH_MSG,\n\u001b[1;32m    421\u001b[0m             tartget\u001b[38;5;241m=\u001b[39mErrorTarget\u001b[38;5;241m.\u001b[39mDATA,\n\u001b[1;32m    422\u001b[0m             no_personal_data_message\u001b[38;5;241m=\u001b[39mCHANGED_ASSET_PATH_MSG_NO_PERSONAL_DATA,\n\u001b[1;32m    423\u001b[0m             error_category\u001b[38;5;241m=\u001b[39mErrorCategory\u001b[38;5;241m.\u001b[39mUSER_ERROR,\n\u001b[1;32m    424\u001b[0m         ) \u001b[38;5;28;01mfrom\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[38;5;21;01mex\u001b[39;00m\n\u001b[0;32m--> 425\u001b[0m \u001b[38;5;28;01mraise\u001b[39;00m ex\n",
-            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.10/site-packages/azure/ai/ml/operations/_data_operations.py:381\u001b[0m, in \u001b[0;36mDataOperations.create_or_update\u001b[0;34m(self, data)\u001b[0m\n\u001b[1;32m    378\u001b[0m auto_increment_version \u001b[38;5;241m=\u001b[39m data\u001b[38;5;241m.\u001b[39m_auto_increment_version\n\u001b[1;32m    380\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m auto_increment_version:\n\u001b[0;32m--> 381\u001b[0m     result \u001b[38;5;241m=\u001b[39m \u001b[43m_create_or_update_autoincrement\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m    382\u001b[0m \u001b[43m        \u001b[49m\u001b[43mname\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mdata\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mname\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    383\u001b[0m \u001b[43m        \u001b[49m\u001b[43mbody\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mdata_version_resource\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    384\u001b[0m \u001b[43m        \u001b[49m\u001b[43mversion_operation\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_operation\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    385\u001b[0m \u001b[43m        \u001b[49m\u001b[43mcontainer_operation\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_container_operation\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    386\u001b[0m \u001b[43m        \u001b[49m\u001b[43mresource_group_name\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_operation_scope\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mresource_group_name\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    387\u001b[0m \u001b[43m        \u001b[49m\u001b[43mworkspace_name\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_workspace_name\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    388\u001b[0m \u001b[43m        \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_init_kwargs\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    389\u001b[0m \u001b[43m    \u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    390\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    391\u001b[0m     result \u001b[38;5;241m=\u001b[39m (\n\u001b[1;32m    392\u001b[0m         \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_operation\u001b[38;5;241m.\u001b[39mbegin_create_or_update(\n\u001b[1;32m    393\u001b[0m             name\u001b[38;5;241m=\u001b[39mname,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    406\u001b[0m         )\n\u001b[1;32m    407\u001b[0m     )\n",
-            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.10/site-packages/azure/ai/ml/_utils/utils.py:943\u001b[0m, in \u001b[0;36mretry.<locals>.retry_decorator.<locals>.func_with_retries\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m    941\u001b[0m delay \u001b[38;5;241m=\u001b[39m delay_multiplier \u001b[38;5;241m*\u001b[39m \u001b[38;5;241m2\u001b[39m\u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mcounter \u001b[38;5;241m+\u001b[39m random\u001b[38;5;241m.\u001b[39muniform(\u001b[38;5;241m0\u001b[39m, \u001b[38;5;241m1\u001b[39m)\n\u001b[1;32m    942\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[0;32m--> 943\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mf\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    944\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m exceptions \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[1;32m    945\u001b[0m     tries \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m=\u001b[39m \u001b[38;5;241m1\u001b[39m\n",
-            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.10/site-packages/azure/ai/ml/_utils/_asset_utils.py:752\u001b[0m, in \u001b[0;36m_create_or_update_autoincrement\u001b[0;34m(name, body, version_operation, container_operation, resource_group_name, workspace_name, **kwargs)\u001b[0m\n\u001b[1;32m    749\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m ResourceNotFoundError:\n\u001b[1;32m    750\u001b[0m     version \u001b[38;5;241m=\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124m1\u001b[39m\u001b[38;5;124m\"\u001b[39m\n\u001b[0;32m--> 752\u001b[0m result \u001b[38;5;241m=\u001b[39m \u001b[43mversion_operation\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mcreate_or_update\u001b[49m\u001b[43m(\u001b[49m\n\u001b[1;32m    753\u001b[0m \u001b[43m    \u001b[49m\u001b[43mname\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mname\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    754\u001b[0m \u001b[43m    \u001b[49m\u001b[43mversion\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mversion\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    755\u001b[0m \u001b[43m    \u001b[49m\u001b[43mresource_group_name\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mresource_group_name\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    756\u001b[0m \u001b[43m    \u001b[49m\u001b[43mworkspace_name\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mworkspace_name\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    757\u001b[0m \u001b[43m    \u001b[49m\u001b[43mbody\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mbody\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    758\u001b[0m \u001b[43m    \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    759\u001b[0m \u001b[43m\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    760\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m result\n",
-            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.10/site-packages/azure/core/tracing/decorator.py:138\u001b[0m, in \u001b[0;36mdistributed_trace.<locals>.decorator.<locals>.wrapper_use_tracer\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m    136\u001b[0m             \u001b[38;5;28;01mfor\u001b[39;00m key, value \u001b[38;5;129;01min\u001b[39;00m span_attributes\u001b[38;5;241m.\u001b[39mitems():\n\u001b[1;32m    137\u001b[0m                 span\u001b[38;5;241m.\u001b[39madd_attribute(key, value)  \u001b[38;5;66;03m# type: ignore\u001b[39;00m\n\u001b[0;32m--> 138\u001b[0m             \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mfunc\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    139\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m    140\u001b[0m     \u001b[38;5;66;03m# Native path\u001b[39;00m\n\u001b[1;32m    141\u001b[0m     config \u001b[38;5;241m=\u001b[39m {}\n",
-            "File \u001b[0;32m/anaconda/envs/azureml_py38/lib/python3.10/site-packages/azure/ai/ml/_restclient/v2023_04_01_preview/operations/_data_versions_operations.py:566\u001b[0m, in \u001b[0;36mDataVersionsOperations.create_or_update\u001b[0;34m(self, resource_group_name, workspace_name, name, version, body, **kwargs)\u001b[0m\n\u001b[1;32m    564\u001b[0m     map_error(status_code\u001b[38;5;241m=\u001b[39mresponse\u001b[38;5;241m.\u001b[39mstatus_code, response\u001b[38;5;241m=\u001b[39mresponse, error_map\u001b[38;5;241m=\u001b[39merror_map)\n\u001b[1;32m    565\u001b[0m     error \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_deserialize\u001b[38;5;241m.\u001b[39mfailsafe_deserialize(_models\u001b[38;5;241m.\u001b[39mErrorResponse, pipeline_response)\n\u001b[0;32m--> 566\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m HttpResponseError(response\u001b[38;5;241m=\u001b[39mresponse, model\u001b[38;5;241m=\u001b[39merror, error_format\u001b[38;5;241m=\u001b[39mARMErrorFormat)\n\u001b[1;32m    568\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m response\u001b[38;5;241m.\u001b[39mstatus_code \u001b[38;5;241m==\u001b[39m \u001b[38;5;241m200\u001b[39m:\n\u001b[1;32m    569\u001b[0m     deserialized \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_deserialize(\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mDataVersionBase\u001b[39m\u001b[38;5;124m'\u001b[39m, pipeline_response)\n",
-            "\u001b[0;31mHttpResponseError\u001b[0m: (UserError) Can't create an active version in an archived container. Please restore the container or mark the version as archived.\nCode: UserError\nMessage: Can't create an active version in an archived container. Please restore the container or mark the version as archived.\nAdditional Information:Type: ComponentName\nInfo: {\n    \"value\": \"managementfrontend\"\n}Type: Correlation\nInfo: {\n    \"value\": {\n        \"operation\": \"fe35ce19637b331d2dbc05a4b9fc7e4a\",\n        \"request\": \"9caed9c02a2414c5\"\n    }\n}Type: Environment\nInfo: {\n    \"value\": \"eastus\"\n}Type: Location\nInfo: {\n    \"value\": \"eastus\"\n}Type: Time\nInfo: {\n    \"value\": \"2025-07-14T18:12:00.9052847+00:00\"\n}"
-          ]
+          "output_type": "execute_result",
+          "execution_count": 13,
+          "data": {
+            "text/plain": "Data({'path': 'azureml://subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourcegroups/defalt_resource_group/workspaces/FitwellWorkspace/datastores/workspaceblobstore/paths/LocalUpload/0b8e06a9f14bf45a52b1c21394f1cdf03017517cd48663b3e20a05882ff35cdd/used_cars.csv', 'skip_validation': False, 'mltable_schema_url': None, 'referenced_uris': None, 'type': 'uri_file', 'is_anonymous': False, 'auto_increment_version': False, 'auto_delete_setting': None, 'name': 'used-cars-dataset-20250714_184257', 'description': 'A dataset of used cars for price prediction', 'tags': {}, 'properties': {}, 'print_as_yaml': False, 'id': '/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourceGroups/defalt_resource_group/providers/Microsoft.MachineLearningServices/workspaces/FitwellWorkspace/data/used-cars-dataset-20250714_184257/versions/1', 'Resource__source_path': '', 'base_path': '/mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code', 'creation_context': <azure.ai.ml.entities._system_data.SystemData object at 0x74329f1352a0>, 'serialize': <msrest.serialization.Serializer object at 0x74329f137af0>, 'version': '1', 'latest_version': None, 'datastore': None})"
+          },
+          "metadata": {}
         }
       ],
-      "execution_count": 7,
+      "execution_count": 13,
       "metadata": {
         "gather": {
           "logged": 1752516720823
@@ -335,7 +354,7 @@
         "os.makedirs(src_dir_env, exist_ok=True)"
       ],
       "outputs": [],
-      "execution_count": 8,
+      "execution_count": 15,
       "metadata": {
         "gather": {
           "logged": 1752516787114
@@ -365,10 +384,10 @@
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "Writing ./env/conda.yml\n"
+          "text": "Writing ./env/conda.yml\n\n"
         }
       ],
-      "execution_count": 9,
+      "execution_count": 16,
       "metadata": {}
     },
     {
@@ -387,14 +406,14 @@
       "outputs": [
         {
           "output_type": "execute_result",
-          "execution_count": 10,
+          "execution_count": 17,
           "data": {
-            "text/plain": "Environment({'arm_type': 'environment_version', 'latest_version': None, 'image': 'mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04', 'intellectual_property': None, 'is_anonymous': False, 'auto_increment_version': False, 'auto_delete_setting': None, 'name': 'machine_learning_E2E', 'description': 'Environment created from a Docker image plus Conda environment.', 'tags': {}, 'properties': {'azureml.labels': 'latest'}, 'print_as_yaml': False, 'id': '/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourceGroups/defalt_resource_group/providers/Microsoft.MachineLearningServices/workspaces/FitwellWorkspace/environments/machine_learning_E2E/versions/1', 'Resource__source_path': '', 'base_path': '/mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code/Users/Connor_1742661257653/Project3', 'creation_context': <azure.ai.ml.entities._system_data.SystemData object at 0x76e2ef107d60>, 'serialize': <msrest.serialization.Serializer object at 0x76e2ed4cfac0>, 'version': '1', 'conda_file': {'channels': ['conda-forge'], 'dependencies': ['python=3.8', 'pip=21.2.4', 'scikit-learn=0.23.2', 'scipy=1.7.1', {'pip': ['mlflow==2.8.1', 'azureml-mlflow==1.51.0', 'azureml-inference-server-http', 'azureml-core==1.49.0', 'cloudpickle==1.6.0']}], 'name': 'sklearn-env'}, 'build': None, 'inference_config': None, 'os_type': 'Linux', 'conda_file_path': None, 'path': None, 'datastore': None, 'upload_hash': None, 'translated_conda_file': '{\\n  \"channels\": [\\n    \"conda-forge\"\\n  ],\\n  \"dependencies\": [\\n    \"python=3.8\",\\n    \"pip=21.2.4\",\\n    \"scikit-learn=0.23.2\",\\n    \"scipy=1.7.1\",\\n    {\\n      \"pip\": [\\n        \"mlflow==2.8.1\",\\n        \"azureml-mlflow==1.51.0\",\\n        \"azureml-inference-server-http\",\\n        \"azureml-core==1.49.0\",\\n        \"cloudpickle==1.6.0\"\\n      ]\\n    }\\n  ],\\n  \"name\": \"sklearn-env\"\\n}'})"
+            "text/plain": "Environment({'arm_type': 'environment_version', 'latest_version': None, 'image': 'mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04', 'intellectual_property': None, 'is_anonymous': False, 'auto_increment_version': False, 'auto_delete_setting': None, 'name': 'machine_learning_E2E', 'description': 'Environment created from a Docker image plus Conda environment.', 'tags': {}, 'properties': {'azureml.labels': 'latest'}, 'print_as_yaml': False, 'id': '/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourceGroups/defalt_resource_group/providers/Microsoft.MachineLearningServices/workspaces/FitwellWorkspace/environments/machine_learning_E2E/versions/1', 'Resource__source_path': '', 'base_path': '/mnt/batch/tasks/shared/LS_root/mounts/clusters/ckath/code', 'creation_context': <azure.ai.ml.entities._system_data.SystemData object at 0x74329f21ace0>, 'serialize': <msrest.serialization.Serializer object at 0x74329f21b610>, 'version': '1', 'conda_file': {'channels': ['conda-forge'], 'dependencies': ['python=3.8', 'pip=21.2.4', 'scikit-learn=0.23.2', 'scipy=1.7.1', {'pip': ['mlflow==2.8.1', 'azureml-mlflow==1.51.0', 'azureml-inference-server-http', 'azureml-core==1.49.0', 'cloudpickle==1.6.0']}], 'name': 'sklearn-env'}, 'build': None, 'inference_config': None, 'os_type': 'Linux', 'conda_file_path': None, 'path': None, 'datastore': None, 'upload_hash': None, 'translated_conda_file': '{\\n  \"channels\": [\\n    \"conda-forge\"\\n  ],\\n  \"dependencies\": [\\n    \"python=3.8\",\\n    \"pip=21.2.4\",\\n    \"scikit-learn=0.23.2\",\\n    \"scipy=1.7.1\",\\n    {\\n      \"pip\": [\\n        \"mlflow==2.8.1\",\\n        \"azureml-mlflow==1.51.0\",\\n        \"azureml-inference-server-http\",\\n        \"azureml-core==1.49.0\",\\n        \"cloudpickle==1.6.0\"\\n      ]\\n    }\\n  ],\\n  \"name\": \"sklearn-env\"\\n}'})"
           },
           "metadata": {}
         }
       ],
-      "execution_count": 10,
+      "execution_count": 17,
       "metadata": {
         "gather": {
           "logged": 1752516788678
@@ -438,7 +457,7 @@
         "os.makedirs(src_dir_job_scripts, exist_ok=True)"
       ],
       "outputs": [],
-      "execution_count": 11,
+      "execution_count": 18,
       "metadata": {
         "gather": {
           "logged": 1752516788959
@@ -502,10 +521,10 @@
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "Writing ./data_prep/data_prep.py\n"
+          "text": "Writing ./data_prep/data_prep.py\n\n"
         }
       ],
-      "execution_count": 12,
+      "execution_count": 19,
       "metadata": {}
     },
     {
@@ -545,7 +564,7 @@
         ")"
       ],
       "outputs": [],
-      "execution_count": 13,
+      "execution_count": 20,
       "metadata": {
         "gather": {
           "logged": 1752516789944
@@ -584,7 +603,7 @@
         "os.makedirs(src_dir_job_scripts, exist_ok=True)"
       ],
       "outputs": [],
-      "execution_count": 14,
+      "execution_count": 21,
       "metadata": {
         "gather": {
           "logged": 1752516790162
@@ -670,10 +689,10 @@
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "Writing ./model_train/model_train.py\n"
+          "text": "Writing ./model_train/model_train.py\n\n"
         }
       ],
-      "execution_count": 15,
+      "execution_count": 22,
       "metadata": {
         "gather": {
           "logged": 1736950263028
@@ -719,7 +738,7 @@
         ")"
       ],
       "outputs": [],
-      "execution_count": 16,
+      "execution_count": 23,
       "metadata": {
         "gather": {
           "logged": 1752516790947
@@ -756,7 +775,7 @@
         "os.makedirs(src_dir_job_scripts, exist_ok=True)"
       ],
       "outputs": [],
-      "execution_count": 17,
+      "execution_count": 24,
       "metadata": {
         "gather": {
           "logged": 1752516791182
@@ -805,10 +824,10 @@
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "Writing ./model_register/model_register.py\n"
+          "text": "Writing ./model_register/model_register.py\n\n"
         }
       ],
-      "execution_count": 18,
+      "execution_count": 25,
       "metadata": {}
     },
     {
@@ -850,7 +869,7 @@
         ")"
       ],
       "outputs": [],
-      "execution_count": 19,
+      "execution_count": 26,
       "metadata": {
         "gather": {
           "logged": 1752516792048
@@ -934,7 +953,7 @@
         "    }"
       ],
       "outputs": [],
-      "execution_count": 20,
+      "execution_count": 27,
       "metadata": {
         "gather": {
           "logged": 1752516792601
@@ -998,10 +1017,10 @@
       "cell_type": "code",
       "source": [
         "# The code retrieves a specific version of a registered data asset using the ml_client object.\n",
-        "data_path = ml_client.data.get(\"used-cars-data\", version=\"1\").path # Provide the name of the data asset"
+        "data_path = ml_client.data.get(data_asset_name, version=\"1\").path # Provide the name of the data asset"
       ],
       "outputs": [],
-      "execution_count": 21,
+      "execution_count": 30,
       "metadata": {
         "gather": {
           "logged": 1752516793147
@@ -1020,7 +1039,7 @@
         ")"
       ],
       "outputs": [],
-      "execution_count": 22,
+      "execution_count": 31,
       "metadata": {
         "gather": {
           "logged": 1752516794413
@@ -1043,15 +1062,20 @@
         {
           "output_type": "stream",
           "name": "stderr",
-          "text": "Class AutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass AutoDeleteConditionSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass BaseAutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass IntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass ProtectionLevelSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass BaseIntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n\u001b[32mUploading model_train (0.0 MBs): 100%|██████████| 2936/2936 [00:00<00:00, 21342247.04it/s]\n\u001b[39m\n\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\n"
+          "text": "Class AutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\n"
+        },
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": "Class AutoDeleteConditionSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass BaseAutoDeleteSettingSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass IntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass ProtectionLevelSchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\nClass BaseIntellectualPropertySchema: This is an experimental class, and may change at any time. Please see https://aka.ms/azuremlexperimental for more information.\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.UriFolderJobOutput'> and will be ignored\npathOnCompute is not a known attribute of class <class 'azure.ai.ml._restclient.v2023_04_01_preview.models._models_py3.MLFlowModelJobOutput'> and will be ignored\n"
         },
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "RunId: silly_evening_1zb5229v8c\nWeb View: https://ml.azure.com/runs/silly_evening_1zb5229v8c?wsid=/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourcegroups/defalt_resource_group/workspaces/FitwellWorkspace\n\nStreaming logs/azureml/executionlogs.txt\n========================================\n\n[2025-07-14 18:13:30Z] Completing processing run id bc3c404e-f4d1-4549-8f39-c22a9574ade9.\n[2025-07-14 18:13:32Z] Submitting 2 runs, first five are: 2941bdf2:c7326941-a9a6-4b78-bd28-24d0fe66503f,3f9ead1f:7a808115-52a5-4d4d-9196-a7e330469ed4\n"
+          "text": "RunId: lime_dog_w6xdt631f9\nWeb View: https://ml.azure.com/runs/lime_dog_w6xdt631f9?wsid=/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourcegroups/defalt_resource_group/workspaces/FitwellWorkspace\n\nStreaming logs/azureml/executionlogs.txt\n========================================\n\n[2025-07-14 18:50:47Z] Completing processing run id 23c46ccd-9aee-40df-9b9e-b7fd5c0180bf.\n[2025-07-14 18:50:49Z] Completing processing run id 37cf3188-987d-4039-900e-4da321c11b5f.\n[2025-07-14 18:50:49Z] Completing processing run id d212f125-0504-4e1a-8bf8-2aee48cc7897.\n[2025-07-14 18:50:50Z] Completing processing run id 6857dbe5-b16b-4065-9436-870d48ad6843.\n[2025-07-14 18:50:51Z] Finishing experiment: no runs left and nothing to schedule.\n\nExecution Summary\n=================\nRunId: lime_dog_w6xdt631f9\nWeb View: https://ml.azure.com/runs/lime_dog_w6xdt631f9?wsid=/subscriptions/f7694127-2f65-4c53-aaef-a2750f7337d3/resourcegroups/defalt_resource_group/workspaces/FitwellWorkspace\n\n"
         }
       ],
-      "execution_count": 23,
+      "execution_count": 32,
       "metadata": {
         "gather": {
           "logged": 1752516723813
@@ -3825,18 +3849,6 @@
       "display_name": "Python 3.10 - AzureML",
       "language": "python",
       "name": "python38-azureml"
-    },
-    "language_info": {
-      "codemirror_mode": {
-        "name": "ipython",
-        "version": 3
-      },
-      "file_extension": ".py",
-      "mimetype": "text/x-python",
-      "name": "python",
-      "nbconvert_exporter": "python",
-      "pygments_lexer": "ipython3",
-      "version": "3.10.11"
     },
     "microsoft": {
       "host": {

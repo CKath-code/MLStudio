@@ -1,0 +1,45 @@
+# Pipeline Parameters Configuration
+# This file contains default parameters for the Used Cars Price Prediction Pipeline
+
+pipeline:
+  name: "used-cars-price-prediction-pipeline"
+  experiment_name: "used-cars-price-prediction"
+  description: "End-to-end MLOps pipeline for used car price prediction"
+  
+compute:
+  cluster_name: "test-cluster"
+  vm_size: "Standard_DS11_v2"
+  min_instances: 0
+  max_instances: 1
+  tier: "dedicated"
+
+data:
+  dataset_name: "used-cars-data"
+  dataset_description: "A dataset of used cars for price prediction with various attributes"
+  data_path: "../../../data/used_cars.csv"
+
+environment:
+  name: "used-cars-train-env"
+  description: "Training environment for used cars price prediction with sklearn and MLflow"
+  base_image: "mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04"
+
+hyperparameters:
+  sampling_algorithm: "random"
+  max_total_trials: 20
+  max_concurrent_trials: 10
+  timeout_minutes: 120
+  
+  search_space:
+    n_estimators:
+      type: "choice"
+      values: [10, 20, 30, 50]
+    max_depth:
+      type: "choice"
+      values: [5, 10, 15, 20, null]
+      
+model:
+  name: "used_cars_price_prediction_model"
+  framework: "sklearn"
+  algorithm: "RandomForestRegressor"
+  primary_metric: "MSE"
+  goal: "minimize"

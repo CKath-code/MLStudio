@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy-pipeline:
     runs-on: ubuntu-latest
@@ -43,7 +47,9 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+        client-id: 893ee4dd-9e84-4a47-b92a-45bdda421aac
+        tenant-id: a2799098-ec71-4199-a883-6274017f5282
+        subscription-id: f7694127-2f65-4c53-aaef-a2750f7337d3
         
     - name: Verify Azure Connection
       run: |

@@ -21,7 +21,7 @@ def parse_args():
     parser.add_argument("--model_output", type=str, help="Path of output model")  # Specify the type for model_output
     parser.add_argument('--n_estimators', type=int, default=100,
                         help='The number of trees in the forest')  # Specify the type and default value for n_estimators
-    parser.add_argument('--max_depth', type=int, default=None,
+    parser.add_argument('--max_depth', type=int, default=10,
                         help='The maximum depth of the tree')  # Specify the type and default value for max_depth
 
     args = parser.parse_args()
@@ -36,10 +36,10 @@ def main(args):
     test_df = pd.read_csv(Path(args.test_data) / "test.csv")
 
     # Split the data into features(X) and target(y) 
-    y_train = train_df['Price']  # Specify the target column
-    X_train = train_df.drop(columns=['Price'])
-    y_test = test_df['Price']
-    X_test = test_df.drop(columns=['Price'])
+    y_train = train_df['price']  # Specify the target column
+    X_train = train_df.drop(columns=['price'])
+    y_test = test_df['price']
+    X_test = test_df.drop(columns=['price'])
 
     # Initialize and train a RandomForest Regressor
     model = RandomForestRegressor(n_estimators=args.n_estimators, max_depth=args.max_depth, random_state=42)  # Provide the arguments for RandomForestRegressor
