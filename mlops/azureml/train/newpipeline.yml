@@ -110,11 +110,15 @@ jobs:
       inputs:
         model_name:
           type: string
+        sweep_completion:
+          type: string
+          optional: true
       outputs:
         model_info_output_path:
           type: uri_folder
     inputs:
       model_name: "used_cars_price_prediction_model"
+      sweep_completion: ${{parent.jobs.sweep_step.outputs.model_output}}
     outputs:
       model_info_output_path: ${{parent.outputs.model_info_output_path}}
 
