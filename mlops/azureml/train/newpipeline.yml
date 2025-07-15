@@ -24,14 +24,28 @@ settings:
 
 jobs:
   prep_data:
-    type: command
-    code: ../../data-science/src
-    command: >-
-      python prep.py  
-      --raw_data ${{inputs.raw_data}} 
-      --train_data ${{outputs.train_data}}
-      --test_data ${{outputs.test_data}} 
-    environment: azureml:used-cars-train-env@latest
+    component:
+      $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+      type: command
+      code: ../../data-science/src
+      command: >-
+        python prep.py  
+        --raw_data ${{inputs.raw_data}} 
+        --train_data ${{outputs.train_data}}
+        --test_data ${{outputs.test_data}} 
+      environment: azureml:used-cars-train-env@latest
+      inputs:
+        raw_data:
+          type: uri_file
+        train_data:
+          type: uri_folder
+        test_data:
+          type: uri_folder
+      outputs:
+        train_data:
+          type: uri_folder
+        test_data:
+          type: uri_folder
     inputs:
       raw_data: ${{parent.inputs.raw_data}}
     outputs:
@@ -48,7 +62,6 @@ jobs:
         type: mlflow_model
     sampling_algorithm: random
     trial:
-      type: command
       code: ../../data-science/src
       command: >-
         python train.py
@@ -88,14 +101,26 @@ jobs:
       timeout: 7200
 
   register_model:
-    type: command
-    code: ../../data-science/src
-    command: >-
-      python register.py 
-      --model_name ${{inputs.model_name}} 
-      --model_path ${{inputs.model_path}} 
-      --model_info_output_path ${{outputs.model_info_output_path}}
-    environment: azureml:used-cars-train-env@latest
+    component:
+      $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+      type: command
+      code: ../../data-science/src
+      command: >-
+        python register.py 
+        --model_name ${{inputs.model_name}} 
+        --model_path ${{inputs.model_path}} 
+        --model_info_output_path ${{outputs.model_info_output_path}}
+      environment: azureml:used-cars-train-env@latest
+      inputs:
+        model_name:
+          type: string
+        model_path:
+          type: mlflow_model
+        model_info_output_path:
+          type: uri_folder
+      outputs:
+        model_info_output_path:
+          type: uri_folder
     inputs:
       model_name: "used_cars_price_prediction_model"
       model_path: ${{parent.jobs.sweep_step.outputs.model_output}}
