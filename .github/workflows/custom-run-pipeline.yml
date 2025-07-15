@@ -44,6 +44,13 @@ jobs:
         run: az extension update -n ml
       - name: update-pipeline-with-dataset-name
         run: |
+          # Debug: Show current directory and structure
+          echo "Current working directory: $(pwd)"
+          echo "Directory structure:"
+          ls -la
+          echo "data-science directory check:"
+          ls -la data-science/src/ || echo "data-science/src not found"
+          
           # Create a temporary pipeline file with the dynamic dataset name
           cp ${{ inputs.parameters-file }} temp-pipeline.yml
           # Replace the dataset reference with the dynamic name
