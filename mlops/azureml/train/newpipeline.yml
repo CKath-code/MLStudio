@@ -40,8 +40,6 @@ jobs:
       test_data: ${{parent.outputs.test_data}}
 
   sweep_step:
-    name: hyperparameter_tuning
-    display_name: Hyperparameter-Tuning  # Hint: Provide the display name for the job
     type: sweep
     inputs:
       train_data: ${{parent.jobs.prep_data.outputs.train_data}}
@@ -57,7 +55,7 @@ jobs:
         values: [10, 20, 30, 50]
       max_depth:
         type: choice  # Specify the type for max_depth
-        values: [5, 10, 15, 20, null]  # Provide the values for max_depth
+        values: [5, 10, 15, 20]  # Removed null value
     objective:
       goal: minimize
       primary_metric: MSE
@@ -68,8 +66,7 @@ jobs:
 
 
   register_model:
-    name: model_registration  # Provide the job name
-    display_name: Model-Registration  # Provide the display name for the job
+    type: command
     code: ../../../data-science/src
     command: >-
       python register.py 
