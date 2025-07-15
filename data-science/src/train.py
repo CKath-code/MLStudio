@@ -29,7 +29,7 @@ def parse_args():
 
     return args
 
-def main(args):
+def main(args, mlflow_enabled=True):
     '''Read train and test datasets, train model, evaluate model, save trained model'''
 
     # Read train and test data from CSV files
@@ -47,12 +47,17 @@ def main(args):
     model.fit(X_train, y_train)  # Train the model
 
     # Log model hyperparameters
-    try:
-        mlflow.log_param("model", "RandomForestRegressor")  # Provide the model name
-        mlflow.log_param("n_estimators", args.n_estimators)
-        mlflow.log_param("max_depth", args.max_depth)
-    except Exception as e:
-        print(f"Warning: MLflow parameter logging failed: {e}")
+    if mlflow_enabled:
+        try:
+            mlflow.log_param("model", "RandomForestRegressor")  # Provide the model name
+            mlflow.log_param("n_estimators", args.n_estimators)
+            mlflow.log_param("max_depth", args.max_depth)
+        except Exception as e:
+            print(f"Warning: MLflow parameter logging failed: {e}")
+    else:
+        print(f"Model: RandomForestRegressor")
+        print(f"n_estimators: {args.n_estimators}")
+        print(f"max_depth: {args.max_depth}")
 
     # Predict using the RandomForest Regressor on test data
     yhat_test = model.predict(X_test)  # Predict the test data
@@ -60,16 +65,25 @@ def main(args):
     # Compute and log mean squared error for test data
     mse = mean_squared_error(y_test, yhat_test)
     print('Mean Squared Error of RandomForest Regressor on test set: {:.2f}'.format(mse))
-    try:
-        mlflow.log_metric("MSE", float(mse))  # Log the MSE
-    except Exception as e:
-        print(f"Warning: MLflow metric logging failed: {e}")
+    if mlflow_enabled:
+        try:
+            mlflow.log_metric("MSE", float(mse))  # Log the MSE
+        except Exception as e:
+            print(f"Warning: MLflow metric logging failed: {e}")
 
     # Save the model
-    try:
-        mlflow.sklearn.save_model(sk_model=model, path=args.model_output)  # Save the model
-    except Exception as e:
-        print(f"Warning: MLflow model saving failed: {e}")
+    if mlflow_enabled:
+        try:
+            mlflow.sklearn.save_model(sk_model=model, path=args.model_output)  # Save the model
+        except Exception as e:
+            print(f"Warning: MLflow model saving failed: {e}")
+            # Fallback: save using joblib
+            import joblib
+            os.makedirs(args.model_output, exist_ok=True)
+            model_path = os.path.join(args.model_output, "model.pkl")
+            joblib.dump(model, model_path)
+            print(f"Model saved using joblib to: {model_path}")
+    else:
         # Fallback: save using joblib
         import joblib
         os.makedirs(args.model_output, exist_ok=True)
@@ -102,7 +116,7 @@ if __name__ == "__main__":
     for line in lines:
         print(line)
 
-    main(args)
+    main(args, mlflow_enabled)
 
     # End MLflow run only if it was successfully started
     if mlflow_enabled:

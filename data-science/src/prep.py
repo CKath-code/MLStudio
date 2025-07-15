@@ -24,7 +24,7 @@ def parse_args():
 
     return args
 
-def main(args):  # Write the function name for the main data preparation logic
+def main(args, mlflow_enabled=True):  # Write the function name for the main data preparation logic
     '''Read, preprocess, split, and save datasets'''
 
     # Reading Data
@@ -43,9 +43,18 @@ def main(args):  # Write the function name for the main data preparation logic
     train_df.to_csv(os.path.join(args.train_data, "train.csv"), index=False)  # Specify the name of the train data file
     test_df.to_csv(os.path.join(args.test_data, "test.csv"), index=False)  # Specify the name of the test data file
 
-    # log the metrics
-    mlflow.log_metric('train size', train_df.shape[0])  # Log the train dataset size
-    mlflow.log_metric('test size', test_df.shape[0])  # Log the test dataset size
+    # log the metrics (with error handling)
+    if mlflow_enabled:
+        try:
+            mlflow.log_metric('train size', train_df.shape[0])  # Log the train dataset size
+            mlflow.log_metric('test size', test_df.shape[0])  # Log the test dataset size
+        except Exception as e:
+            print(f"Warning: MLflow metric logging failed: {e}")
+            print(f"Train dataset size: {train_df.shape[0]}")
+            print(f"Test dataset size: {test_df.shape[0]}")
+    else:
+        print(f"Train dataset size: {train_df.shape[0]}")
+        print(f"Test dataset size: {test_df.shape[0]}")
 
 if __name__ == "__main__":
     # Try to start MLflow run, but continue if it fails due to environment issues
@@ -70,7 +79,7 @@ if __name__ == "__main__":
     for line in lines:
         print(line)
     
-    main(args)
+    main(args, mlflow_enabled)
 
     # End MLflow run only if it was successfully started
     if mlflow_enabled:
