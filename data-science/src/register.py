@@ -9,6 +9,7 @@ from pathlib import Path
 import mlflow
 import os 
 import json
+import glob
 
 def parse_args():
     '''Parse input arguments'''
@@ -26,22 +27,48 @@ def main(args):
     '''Loads the best-trained model from the sweep job and registers it'''
 
     print("Registering ", args.model_name)
+    print(f"Model path provided: {args.model_path}")
+    
+    # Handle the case where model_path contains template variables that weren't substituted
+    model_path = args.model_path
+    if "${{name}}" in model_path or "${name}" in model_path:
+        print("Warning: Model path contains unresolved template variables")
+        # Try to find the actual model directory by looking for MLmodel files
+        import glob
+        base_path = model_path.replace("${{name}}", "*").replace("${name}", "*")
+        possible_paths = glob.glob(base_path)
+        print(f"Searching for models in: {base_path}")
+        print(f"Found possible paths: {possible_paths}")
+        
+        # Look for directories containing MLmodel file
+        for path in possible_paths:
+            if os.path.isdir(path) and os.path.exists(os.path.join(path, "MLmodel")):
+                model_path = path
+                print(f"Using model path: {model_path}")
+                break
+        else:
+            # If no MLmodel found, just use the first directory
+            for path in possible_paths:
+                if os.path.isdir(path):
+                    model_path = path
+                    print(f"Using model path (no MLmodel found): {model_path}")
+                    break
 
     try:
         # Load model - try MLflow first, then fallback to joblib if needed
         try:
-            model = mlflow.sklearn.load_model(args.model_path)  # Load the model from model_path
+            model = mlflow.sklearn.load_model(model_path)  # Load the model from model_path
             print("Model loaded using MLflow")
         except Exception as load_error:
             print(f"MLflow model loading failed: {load_error}")
             # Fallback: try loading with joblib if MLmodel structure exists but MLflow fails
             import joblib
-            model_pkl_path = os.path.join(args.model_path, "model.pkl")
+            model_pkl_path = os.path.join(model_path, "model.pkl")
             if os.path.exists(model_pkl_path):
                 model = joblib.load(model_pkl_path)
                 print("Model loaded using joblib fallback")
             else:
-                raise Exception(f"No model found at {args.model_path}")
+                raise Exception(f"No model found at {model_path}")
 
         # Log model using mlflow
         mlflow.sklearn.log_model(model, args.model_name)  # Log the model using with model_name
