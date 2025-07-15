@@ -37,10 +37,6 @@ jobs:
       inputs:
         raw_data:
           type: uri_file
-        train_data:
-          type: uri_folder
-        test_data:
-          type: uri_folder
       outputs:
         train_data:
           type: uri_folder
@@ -116,8 +112,6 @@ jobs:
           type: string
         model_path:
           type: mlflow_model
-        model_info_output_path:
-          type: uri_folder
       outputs:
         model_info_output_path:
           type: uri_folder
