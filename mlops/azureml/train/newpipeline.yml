@@ -27,7 +27,7 @@ jobs:
     component:
       $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
       type: command
-      code: ../../data-science/src
+      code: ./data-science/src
       command: >-
         python prep.py  
         --raw_data ${{inputs.raw_data}} 
@@ -62,7 +62,7 @@ jobs:
         type: mlflow_model
     sampling_algorithm: random
     trial:
-      code: ../../data-science/src
+      code: ./data-science/src
       command: >-
         python train.py
         --train_data ${{inputs.train_data}}
@@ -104,7 +104,7 @@ jobs:
     component:
       $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
       type: command
-      code: ../../data-science/src
+      code: ./data-science/src
       command: >-
         python register.py 
         --model_name ${{inputs.model_name}} 

@@ -55,9 +55,11 @@ jobs:
           cp ${{ inputs.parameters-file }} temp-pipeline.yml
           # Replace the dataset reference with the dynamic name
           sed -i "s/azureml:used-cars-data[^@]*@latest/azureml:${{ inputs.dataset_name }}@latest/g" temp-pipeline.yml
+          # Fix code paths to work in GitHub Actions environment  
+          sed -i "s|code: \./data-science/src|code: ./data-science/src|g" temp-pipeline.yml
           echo "Updated pipeline file with dataset name: ${{ inputs.dataset_name }}"
           echo "Pipeline file content:"
-          head -20 temp-pipeline.yml
+          head -30 temp-pipeline.yml
       - name: run-ml-pipeline
         run: |
           run_id=$(az ml job create --file temp-pipeline.yml --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }} --query name -o tsv)
