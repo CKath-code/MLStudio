@@ -16,7 +16,7 @@ inputs:
 outputs:
   model_output:
     type: mlflow_model  # Specify the type for model_output
-code: ../../../data-science/src
+code: ../../data-science/src
 command: >-
   python train.py 
   --train_data ${{inputs.train_data}}

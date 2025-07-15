@@ -24,9 +24,8 @@ settings:
 
 jobs:
   prep_data:
-    name: data_preparation  # Provide the job name
-    display_name: Data-Preparation  # Provide the display name for the job
-    code: ../../../data-science/src
+    type: command
+    code: ../../data-science/src
     command: >-
       python prep.py  
       --raw_data ${{inputs.raw_data}} 
@@ -67,7 +66,7 @@ jobs:
 
   register_model:
     type: command
-    code: ../../../data-science/src
+    code: ../../data-science/src
     command: >-
       python register.py 
       --model_name ${{inputs.model_name}} 
