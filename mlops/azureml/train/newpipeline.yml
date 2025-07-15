@@ -106,19 +106,19 @@ jobs:
         --model_name ${{inputs.model_name}} 
         --search_base "/mnt/azureml/cr/j"
         --model_info_output_path ${{outputs.model_info_output_path}}
-        --train_data ${{inputs.train_data}}
+        --sweep_model_path ${{inputs.sweep_model_path}}
       environment: azureml:used-cars-train-env@latest
       inputs:
         model_name:
           type: string
-        train_data:
-          type: uri_folder
+        sweep_model_path:
+          type: mlflow_model
       outputs:
         model_info_output_path:
           type: uri_folder
     inputs:
       model_name: "used_cars_price_prediction_model"
-      train_data: ${{parent.jobs.prep_data.outputs.train_data}}
+      sweep_model_path: ${{parent.jobs.sweep_step.outputs.model_output}}
     outputs:
       model_info_output_path: ${{parent.outputs.model_info_output_path}}
 

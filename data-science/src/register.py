@@ -18,7 +18,7 @@ def parse_args():
     parser.add_argument('--model_name', type=str, help='Name under which model will be registered')
     parser.add_argument('--search_base', type=str, help='Base directory to search for models', default='/mnt/azureml/cr/j')
     parser.add_argument("--model_info_output_path", type=str, help="Path to write model info JSON")
-    parser.add_argument('--train_data', type=str, help='Training data path (creates dependency)', required=False)
+    parser.add_argument('--sweep_model_path', type=str, help='Path to sweep model output (creates dependency on sweep completion)', required=False)
     args, _ = parser.parse_known_args()
     print(f'Arguments: {args}')
 
@@ -69,10 +69,21 @@ def main(args):
 
     print("Registering ", args.model_name)
     
-    # Find the best model instead of using a provided path
+    # Check if we have a direct sweep model path
+    if args.sweep_model_path and os.path.exists(args.sweep_model_path):
+        print(f"Using sweep model path: {args.sweep_model_path}")
+        model_path = args.sweep_model_path
+    else:
+        # Find the best model using filesystem search
+        try:
+            model_path = find_best_model(args.search_base)
+            print(f"Best model found at: {model_path}")
+        except Exception as e:
+            print(f"Error finding model: {e}")
+            raise
+    
+    # Load and register model
     try:
-        model_path = find_best_model(args.search_base)
-        print(f"Best model found at: {model_path}")
         # Load model - try MLflow first, then fallback to joblib if needed
         try:
             model = mlflow.sklearn.load_model(model_path)  # Load the model from model_path
