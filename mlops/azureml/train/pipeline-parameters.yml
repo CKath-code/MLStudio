@@ -14,7 +14,7 @@ compute:
   tier: "dedicated"
 
 data:
-  dataset_name: "used-cars-data"
+  dataset_name: "used-cars-data-v2"
   dataset_description: "A dataset of used cars for price prediction with various attributes"
   data_path: "../../../data/used_cars.csv"
 

@@ -7,7 +7,7 @@ description: End-to-end-MLOps-pipeline-for-used-car-price-prediction  # Provide 
 inputs:
   raw_data:
     type: uri_file
-    path: azureml:used-cars-data@latest
+    path: azureml:used-cars-data-v2@latest
 
 outputs:
   train_data:
