@@ -18,7 +18,6 @@ def parse_args():
     parser.add_argument('--model_name', type=str, help='Name under which model will be registered')
     parser.add_argument('--search_base', type=str, help='Base directory to search for models', default='/mnt/azureml/cr/j')
     parser.add_argument("--model_info_output_path", type=str, help="Path to write model info JSON")
-    parser.add_argument('--sweep_completion', type=str, help='Dependency input to ensure sweep completes first', required=False)
     args, _ = parser.parse_known_args()
     print(f'Arguments: {args}')
 
