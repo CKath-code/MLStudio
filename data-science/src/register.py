@@ -18,43 +18,29 @@ def parse_args():
     parser.add_argument('--model_name', type=str, help='Name under which model will be registered')
     parser.add_argument('--search_base', type=str, help='Base directory to search for models', default='/tmp/azureml_cr')
     parser.add_argument("--model_info_output_path", type=str, help="Path to write model info JSON")
+    parser.add_argument('--trained_model_path', type=str, help='Path to trained model', required=False)
     args, _ = parser.parse_known_args()
     print(f'Arguments: {args}')
 
     return args
 
 def find_best_model(search_base):
-    """Find the best model from sweep trials by searching the file system"""
+    """Find the best model from training by searching the file system"""
     print(f"Searching for models in: {search_base}")
-    
-    # Wait for sweep to complete by checking for model outputs
-    import time
-    max_wait_time = 3600  # 1 hour max wait
-    wait_interval = 30    # Check every 30 seconds
-    total_waited = 0
     
     model_candidates = []
     
-    while total_waited < max_wait_time:
-        model_candidates = []
-        
-        # Search for model directories
-        for root, dirs, files in os.walk(search_base):
-            # Look for directories containing model files
-            if 'MLmodel' in files or 'model.pkl' in files:
-                print(f"Found potential model at: {root}")
-                model_candidates.append(root)
-        
-        if model_candidates:
-            print(f"Found {len(model_candidates)} model candidates after waiting {total_waited} seconds")
-            break
-        else:
-            print(f"No models found yet, waiting {wait_interval} seconds... (waited {total_waited}s total)")
-            time.sleep(wait_interval)
-            total_waited += wait_interval
+    # Search for model directories
+    for root, dirs, files in os.walk(search_base):
+        # Look for directories containing model files
+        if 'MLmodel' in files or 'model.pkl' in files:
+            print(f"Found potential model at: {root}")
+            model_candidates.append(root)
     
     if not model_candidates:
-        raise Exception(f"No models found in search base: {search_base} after waiting {total_waited} seconds")
+        raise Exception(f"No models found in search base: {search_base}")
+    
+    print(f"Found {len(model_candidates)} model candidates")
     
     # For now, just return the first one (in a real scenario, you'd pick the best based on metrics)
     # You could enhance this by reading metrics from MLflow logs or other criteria
@@ -64,17 +50,22 @@ def find_best_model(search_base):
     return best_model_path
 
 def main(args):
-    '''Finds and registers the best model from the sweep job'''
+    '''Registers the trained model'''
 
     print("Registering ", args.model_name)
     
-    # Find the best model using filesystem search with enhanced wait logic
-    try:
-        model_path = find_best_model(args.search_base)
-        print(f"Best model found at: {model_path}")
-    except Exception as e:
-        print(f"Error finding model: {e}")
-        raise
+    # Use the trained model path directly if provided
+    if args.trained_model_path and os.path.exists(args.trained_model_path):
+        print(f"Using trained model path: {args.trained_model_path}")
+        model_path = args.trained_model_path
+    else:
+        # Fallback to filesystem search
+        try:
+            model_path = find_best_model(args.search_base)
+            print(f"Best model found at: {model_path}")
+        except Exception as e:
+            print(f"Error finding model: {e}")
+            raise
     
     # Load and register model
     try:
