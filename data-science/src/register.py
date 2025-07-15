@@ -31,28 +31,61 @@ def main(args):
     
     # Handle the case where model_path contains template variables that weren't substituted
     model_path = args.model_path
+    print(f"Original model path: {model_path}")
+    
     if "${{name}}" in model_path or "${name}" in model_path:
         print("Warning: Model path contains unresolved template variables")
-        # Try to find the actual model directory by looking for MLmodel files
-        import glob
-        base_path = model_path.replace("${{name}}", "*").replace("${name}", "*")
-        possible_paths = glob.glob(base_path)
-        print(f"Searching for models in: {base_path}")
-        print(f"Found possible paths: {possible_paths}")
         
-        # Look for directories containing MLmodel file
-        for path in possible_paths:
-            if os.path.isdir(path) and os.path.exists(os.path.join(path, "MLmodel")):
-                model_path = path
-                print(f"Using model path: {model_path}")
-                break
+        # Extract the base path before the template variable
+        if "${{name}}" in model_path:
+            base_path_parts = model_path.split("/${{name}}/")
         else:
-            # If no MLmodel found, just use the first directory
-            for path in possible_paths:
-                if os.path.isdir(path):
-                    model_path = path
-                    print(f"Using model path (no MLmodel found): {model_path}")
-                    break
+            base_path_parts = model_path.split("/${name}/")
+            
+        if len(base_path_parts) >= 2:
+            base_dir = base_path_parts[0]
+            remaining_path = base_path_parts[1]
+            print(f"Base directory: {base_dir}")
+            print(f"Remaining path: {remaining_path}")
+            
+            # Look for subdirectories in the base path
+            if os.path.exists(base_dir):
+                subdirs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
+                print(f"Found subdirectories: {subdirs}")
+                
+                # Look for directories that might be trial outputs
+                for subdir in subdirs:
+                    potential_path = os.path.join(base_dir, subdir, remaining_path)
+                    print(f"Checking path: {potential_path}")
+                    
+                    if os.path.exists(potential_path):
+                        # Check if it contains a model (MLmodel file or model.pkl)
+                        if (os.path.exists(os.path.join(potential_path, "MLmodel")) or 
+                            os.path.exists(os.path.join(potential_path, "model.pkl"))):
+                            model_path = potential_path
+                            print(f"Found model at: {model_path}")
+                            break
+                else:
+                    print("No valid model directory found, trying glob pattern...")
+                    # Try glob pattern as fallback
+                    import glob
+                    pattern = model_path.replace("${{name}}", "*").replace("${name}", "*")
+                    possible_paths = glob.glob(pattern)
+                    print(f"Glob pattern: {pattern}")
+                    print(f"Found paths: {possible_paths}")
+                    
+                    for path in possible_paths:
+                        if os.path.isdir(path) and (os.path.exists(os.path.join(path, "MLmodel")) or 
+                                                   os.path.exists(os.path.join(path, "model.pkl"))):
+                            model_path = path
+                            print(f"Using model path from glob: {model_path}")
+                            break
+    
+    print(f"Final model path: {model_path}")
+    
+    # Verify the final path exists
+    if not os.path.exists(model_path):
+        raise Exception(f"Model path does not exist: {model_path}")
 
     try:
         # Load model - try MLflow first, then fallback to joblib if needed
