@@ -38,7 +38,7 @@ jobs:
     with:
       resource_group: ${{ needs.get-config.outputs.resource_group }}
       workspace_name: ${{ needs.get-config.outputs.aml_workspace }}
-      name: used-cars-data-v2
+      name: used-cars-data-${{ github.run_number }}
       data_file: mlops/azureml/train/data.yml
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -68,6 +68,7 @@ jobs:
         workspace_name: ${{ needs.get-config.outputs.aml_workspace }}     
         parameters-file:  mlops/azureml/train/newpipeline.yml
         job-name: mlops-pipeline
+        dataset_name: used-cars-data-${{ github.run_number }}
       secrets:
         AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}

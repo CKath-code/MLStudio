@@ -15,6 +15,9 @@ on:
       job-name:
         required: true
         type: string
+      dataset_name:
+        required: true
+        type: string
     secrets:
       AZURE_CLIENT_ID:
         required: true
@@ -24,6 +27,7 @@ on:
         required: true
       AZURE_CLIENT_SECRET:
         required: true
+
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
@@ -38,9 +42,18 @@ jobs:
         run: az extension add -n ml -y
       - name: update-extension
         run: az extension update -n ml
+      - name: update-pipeline-with-dataset-name
+        run: |
+          # Create a temporary pipeline file with the dynamic dataset name
+          cp ${{ inputs.parameters-file }} temp-pipeline.yml
+          # Replace the dataset reference with the dynamic name
+          sed -i "s/azureml:used-cars-data[^@]*@latest/azureml:${{ inputs.dataset_name }}@latest/g" temp-pipeline.yml
+          echo "Updated pipeline file with dataset name: ${{ inputs.dataset_name }}"
+          echo "Pipeline file content:"
+          head -20 temp-pipeline.yml
       - name: run-ml-pipeline
         run: |
-          run_id=$(az ml job create --file ${{ github.workspace }}/${{ inputs.parameters-file  }} --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }} --query name -o tsv)
+          run_id=$(az ml job create --file temp-pipeline.yml --resource-group ${{ inputs.resource_group }} --workspace-name ${{ inputs.workspace_name }} --query name -o tsv)
           if [[ -z "$run_id" ]]
           then
             echo "Job creation failed"
