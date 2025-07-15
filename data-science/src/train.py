@@ -5,6 +5,7 @@ Trains ML model using training dataset and evaluates using test dataset. Saves t
 """
 
 import argparse
+import os
 from pathlib import Path
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -46,9 +47,12 @@ def main(args):
     model.fit(X_train, y_train)  # Train the model
 
     # Log model hyperparameters
-    mlflow.log_param("model", "RandomForestRegressor")  # Provide the model name
-    mlflow.log_param("n_estimators", args.n_estimators)
-    mlflow.log_param("max_depth", args.max_depth)
+    try:
+        mlflow.log_param("model", "RandomForestRegressor")  # Provide the model name
+        mlflow.log_param("n_estimators", args.n_estimators)
+        mlflow.log_param("max_depth", args.max_depth)
+    except Exception as e:
+        print(f"Warning: MLflow parameter logging failed: {e}")
 
     # Predict using the RandomForest Regressor on test data
     yhat_test = model.predict(X_test)  # Predict the test data
@@ -56,14 +60,33 @@ def main(args):
     # Compute and log mean squared error for test data
     mse = mean_squared_error(y_test, yhat_test)
     print('Mean Squared Error of RandomForest Regressor on test set: {:.2f}'.format(mse))
-    mlflow.log_metric("MSE", float(mse))  # Log the MSE
+    try:
+        mlflow.log_metric("MSE", float(mse))  # Log the MSE
+    except Exception as e:
+        print(f"Warning: MLflow metric logging failed: {e}")
 
     # Save the model
-    mlflow.sklearn.save_model(sk_model=model, path=args.model_output)  # Save the model
+    try:
+        mlflow.sklearn.save_model(sk_model=model, path=args.model_output)  # Save the model
+    except Exception as e:
+        print(f"Warning: MLflow model saving failed: {e}")
+        # Fallback: save using joblib
+        import joblib
+        os.makedirs(args.model_output, exist_ok=True)
+        model_path = os.path.join(args.model_output, "model.pkl")
+        joblib.dump(model, model_path)
+        print(f"Model saved using joblib to: {model_path}")
 
 if __name__ == "__main__":
     
-    mlflow.start_run()
+    # Try to start MLflow run, but continue if it fails due to environment issues
+    try:
+        mlflow.start_run()
+        mlflow_enabled = True
+    except Exception as e:
+        print(f"Warning: MLflow initialization failed: {e}")
+        print("Continuing without MLflow logging...")
+        mlflow_enabled = False
 
     # Parse Arguments
     args = parse_args()
@@ -81,5 +104,10 @@ if __name__ == "__main__":
 
     main(args)
 
-    mlflow.end_run()
+    # End MLflow run only if it was successfully started
+    if mlflow_enabled:
+        try:
+            mlflow.end_run()
+        except Exception as e:
+            print(f"Warning: MLflow end_run failed: {e}")
 

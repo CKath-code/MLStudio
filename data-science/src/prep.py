@@ -48,7 +48,14 @@ def main(args):  # Write the function name for the main data preparation logic
     mlflow.log_metric('test size', test_df.shape[0])  # Log the test dataset size
 
 if __name__ == "__main__":
-    mlflow.start_run()
+    # Try to start MLflow run, but continue if it fails due to environment issues
+    try:
+        mlflow.start_run()
+        mlflow_enabled = True
+    except Exception as e:
+        print(f"Warning: MLflow initialization failed: {e}")
+        print("Continuing without MLflow logging...")
+        mlflow_enabled = False
 
     # Parse Arguments
     args = parse_args()  # Call the function to parse arguments
@@ -65,4 +72,9 @@ if __name__ == "__main__":
     
     main(args)
 
-    mlflow.end_run()
+    # End MLflow run only if it was successfully started
+    if mlflow_enabled:
+        try:
+            mlflow.end_run()
+        except Exception as e:
+            print(f"Warning: MLflow end_run failed: {e}")
