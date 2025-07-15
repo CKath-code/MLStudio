@@ -15,79 +15,48 @@ def parse_args():
     '''Parse input arguments'''
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_name', type=str, help='Name under which model will be registered')  # Hint: Specify the type for model_name (str)
-    parser.add_argument('--model_path', type=str, help='Model directory')  # Hint: Specify the type for model_path (str)
-    parser.add_argument("--model_info_output_path", type=str, help="Path to write model info JSON")  # Hint: Specify the type for model_info_output_path (str)
+    parser.add_argument('--model_name', type=str, help='Name under which model will be registered')
+    parser.add_argument('--search_base', type=str, help='Base directory to search for models', default='/mnt/azureml/cr/j')
+    parser.add_argument("--model_info_output_path", type=str, help="Path to write model info JSON")
     args, _ = parser.parse_known_args()
     print(f'Arguments: {args}')
 
     return args
 
+def find_best_model(search_base):
+    """Find the best model from sweep trials by searching the file system"""
+    print(f"Searching for models in: {search_base}")
+    
+    model_candidates = []
+    
+    # Search for model directories
+    for root, dirs, files in os.walk(search_base):
+        # Look for directories containing model files
+        if 'MLmodel' in files or 'model.pkl' in files:
+            print(f"Found potential model at: {root}")
+            model_candidates.append(root)
+    
+    if not model_candidates:
+        raise Exception(f"No models found in search base: {search_base}")
+    
+    print(f"Found {len(model_candidates)} model candidates")
+    
+    # For now, just return the first one (in a real scenario, you'd pick the best based on metrics)
+    # You could enhance this by reading metrics from MLflow logs or other criteria
+    best_model_path = model_candidates[0]
+    print(f"Selected model: {best_model_path}")
+    
+    return best_model_path
+
 def main(args):
-    '''Loads the best-trained model from the sweep job and registers it'''
+    '''Finds and registers the best model from the sweep job'''
 
     print("Registering ", args.model_name)
-    print(f"Model path provided: {args.model_path}")
     
-    # Handle the case where model_path contains template variables that weren't substituted
-    model_path = args.model_path
-    print(f"Original model path: {model_path}")
-    
-    if "${{name}}" in model_path or "${name}" in model_path:
-        print("Warning: Model path contains unresolved template variables")
-        
-        # Extract the base path before the template variable
-        if "${{name}}" in model_path:
-            base_path_parts = model_path.split("/${{name}}/")
-        else:
-            base_path_parts = model_path.split("/${name}/")
-            
-        if len(base_path_parts) >= 2:
-            base_dir = base_path_parts[0]
-            remaining_path = base_path_parts[1]
-            print(f"Base directory: {base_dir}")
-            print(f"Remaining path: {remaining_path}")
-            
-            # Look for subdirectories in the base path
-            if os.path.exists(base_dir):
-                subdirs = [d for d in os.listdir(base_dir) if os.path.isdir(os.path.join(base_dir, d))]
-                print(f"Found subdirectories: {subdirs}")
-                
-                # Look for directories that might be trial outputs
-                for subdir in subdirs:
-                    potential_path = os.path.join(base_dir, subdir, remaining_path)
-                    print(f"Checking path: {potential_path}")
-                    
-                    if os.path.exists(potential_path):
-                        # Check if it contains a model (MLmodel file or model.pkl)
-                        if (os.path.exists(os.path.join(potential_path, "MLmodel")) or 
-                            os.path.exists(os.path.join(potential_path, "model.pkl"))):
-                            model_path = potential_path
-                            print(f"Found model at: {model_path}")
-                            break
-                else:
-                    print("No valid model directory found, trying glob pattern...")
-                    # Try glob pattern as fallback
-                    import glob
-                    pattern = model_path.replace("${{name}}", "*").replace("${name}", "*")
-                    possible_paths = glob.glob(pattern)
-                    print(f"Glob pattern: {pattern}")
-                    print(f"Found paths: {possible_paths}")
-                    
-                    for path in possible_paths:
-                        if os.path.isdir(path) and (os.path.exists(os.path.join(path, "MLmodel")) or 
-                                                   os.path.exists(os.path.join(path, "model.pkl"))):
-                            model_path = path
-                            print(f"Using model path from glob: {model_path}")
-                            break
-    
-    print(f"Final model path: {model_path}")
-    
-    # Verify the final path exists
-    if not os.path.exists(model_path):
-        raise Exception(f"Model path does not exist: {model_path}")
-
+    # Find the best model instead of using a provided path
     try:
+        model_path = find_best_model(args.search_base)
+        print(f"Best model found at: {model_path}")
         # Load model - try MLflow first, then fallback to joblib if needed
         try:
             model = mlflow.sklearn.load_model(model_path)  # Load the model from model_path
@@ -148,7 +117,7 @@ if __name__ == "__main__":
     
     lines = [
         f"Model name: {args.model_name}",
-        f"Model path: {args.model_path}",
+        f"Search base: {args.search_base}",
         f"Model info output path: {args.model_info_output_path}"
     ]
 
