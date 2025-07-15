@@ -28,8 +28,20 @@ def main(args):
     print("Registering ", args.model_name)
 
     try:
-        # Load model
-        model = mlflow.sklearn.load_model(args.model_path)  # Load the model from model_path
+        # Load model - try MLflow first, then fallback to joblib if needed
+        try:
+            model = mlflow.sklearn.load_model(args.model_path)  # Load the model from model_path
+            print("Model loaded using MLflow")
+        except Exception as load_error:
+            print(f"MLflow model loading failed: {load_error}")
+            # Fallback: try loading with joblib if MLmodel structure exists but MLflow fails
+            import joblib
+            model_pkl_path = os.path.join(args.model_path, "model.pkl")
+            if os.path.exists(model_pkl_path):
+                model = joblib.load(model_pkl_path)
+                print("Model loaded using joblib fallback")
+            else:
+                raise Exception(f"No model found at {args.model_path}")
 
         # Log model using mlflow
         mlflow.sklearn.log_model(model, args.model_name)  # Log the model using with model_name

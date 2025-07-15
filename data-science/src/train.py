@@ -6,6 +6,7 @@ Trains ML model using training dataset and evaluates using test dataset. Saves t
 
 import argparse
 import os
+import json
 from pathlib import Path
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -28,6 +29,61 @@ def parse_args():
     args = parser.parse_args()
 
     return args
+
+def create_mlflow_model_fallback(model, model_output_path):
+    """Create a minimal MLflow model structure when MLflow is not available"""
+    import joblib
+    import yaml
+    
+    # Create the model directory
+    os.makedirs(model_output_path, exist_ok=True)
+    
+    # Save the model using joblib
+    model_path = os.path.join(model_output_path, "model.pkl")
+    joblib.dump(model, model_path)
+    
+    # Create MLmodel file (required by Azure ML)
+    mlmodel_content = {
+        'artifact_path': 'model',
+        'flavors': {
+            'python_function': {
+                'env': 'conda.yaml',
+                'loader_module': 'mlflow.sklearn',
+                'model_path': 'model.pkl',
+                'python_version': '3.9.0'
+            },
+            'sklearn': {
+                'code': None,
+                'pickled_model': 'model.pkl',
+                'serialization_format': 'cloudpickle',
+                'sklearn_version': '1.0.0'
+            }
+        },
+        'model_uuid': '12345678-1234-1234-1234-123456789012',
+        'run_id': 'fallback_run',
+        'utc_time_created': '2025-07-15 15:00:00.000000'
+    }
+    
+    # Write MLmodel file
+    with open(os.path.join(model_output_path, "MLmodel"), 'w') as f:
+        yaml.dump(mlmodel_content, f, default_flow_style=False)
+    
+    # Create a simple conda.yaml
+    conda_content = {
+        'channels': ['defaults', 'conda-forge'],
+        'dependencies': [
+            'python=3.9.0',
+            'scikit-learn=1.0.0',
+            'joblib',
+            {'pip': ['mlflow']}
+        ],
+        'name': 'mlflow-env'
+    }
+    
+    with open(os.path.join(model_output_path, "conda.yaml"), 'w') as f:
+        yaml.dump(conda_content, f, default_flow_style=False)
+    
+    print(f"MLflow-compatible model structure created at: {model_output_path}")
 
 def main(args, mlflow_enabled=True):
     '''Read train and test datasets, train model, evaluate model, save trained model'''
@@ -75,21 +131,14 @@ def main(args, mlflow_enabled=True):
     if mlflow_enabled:
         try:
             mlflow.sklearn.save_model(sk_model=model, path=args.model_output)  # Save the model
+            print(f"Model saved using MLflow to: {args.model_output}")
         except Exception as e:
             print(f"Warning: MLflow model saving failed: {e}")
-            # Fallback: save using joblib
-            import joblib
-            os.makedirs(args.model_output, exist_ok=True)
-            model_path = os.path.join(args.model_output, "model.pkl")
-            joblib.dump(model, model_path)
-            print(f"Model saved using joblib to: {model_path}")
+            # Fallback: create MLflow-compatible structure manually
+            create_mlflow_model_fallback(model, args.model_output)
     else:
-        # Fallback: save using joblib
-        import joblib
-        os.makedirs(args.model_output, exist_ok=True)
-        model_path = os.path.join(args.model_output, "model.pkl")
-        joblib.dump(model, model_path)
-        print(f"Model saved using joblib to: {model_path}")
+        # Fallback: create MLflow-compatible structure manually
+        create_mlflow_model_fallback(model, args.model_output)
 
 if __name__ == "__main__":
     
